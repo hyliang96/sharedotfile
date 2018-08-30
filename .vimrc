@@ -24,8 +24,8 @@ set hlsearch                " 搜索时高亮显示被找到的文本
 set noerrorbells            " 关闭错误信息响铃
 set novisualbell            " 关闭使用可视响铃代替呼叫
 set t_vb=                   " 置空错误铃声的终端代码
-set showmatch               " 插入括号时，短暂地跳转到匹配的对应括号
-set matchtime=2             " 短暂跳转到匹配括号的时间
+" set showmatch               " 插入括号时，短暂地跳转到匹配的对应括号
+" set matchtime=2             " 短暂跳转到匹配括号的时间
 set magic                   " 设置魔术
 set hidden                  " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
 set guioptions-=T           " 隐藏工具栏
@@ -120,34 +120,16 @@ let html_use_css=1
 " Python 文件的一般设置，比如不要 tab 等
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
 autocmd FileType python map <F12> :!python %<CR>
-"--------------------------- 复制黏贴和鼠标操作 ----------------
-" 插入模式下，可以戳哪光标去哪；
-" 查看模式下，可以用光标选区域并command+c，但只能整行选中，因此会带有行号，且在tmux下回把别的窗口也选中；
-" 所有模式下，可以上下滑动页面，但无法跨页用鼠标选中并复制出来
-set mouse=ic
-" 在任何模式下，粘贴前，command+v 开paste，而后在插入模式下可粘贴不出现自动缩进；
-" 在任何模式下，粘贴后，command+v 关paste，恢复自动缩进
-set pastetoggle=<C-v> 
-" 复制前，在查看模式先，ctrl+c 关闭行号，可光标选中一页以内的文本，ctrl+c复制到本地电脑
-" 复制后，ctrl+c 打开行号
-map <C-c> :set invnumber<CR>
 
-" 从服务器的vim里复制/剪切文字到本地电脑的剪切板
-" v,y复制/v,d剪切/(数字)dd 整行剪切，发送到笔记本的系统剪切板，但不清空vim的寄存器
-vmap y y:call system('nc localhost 8377', @")<CR>
-vmap d d:call system('nc localhost 8377', @")<CR>
-nmap dd dd:call system('nc localhost 8377', @")<CR>
-" ctrl+a 整个文件发送到笔记本的系统剪切板
-map <C-a> :%w !nc localhost 8377<CR><CR>    
-
-" 设置vim寄存器大小
-" '100 Marks will be remembered for the last 100 edited files.
-" vim的剪切板（寄存器）最多存<= 1000行，100KB 的内容
-" h Disables search highlighting when Vim starts.
-set viminfo='100,<1000,s100,h
-"----------------------------------------------------------------
+set mouse=a
+" set clipboard=unnamed
+vmap "+y :w !pbcopy<CR><CR>
+nmap "+p :r !pbpaste<CR><CR>
+" 选中状态下 Command + c 复制
+vmap <D-c> "+y
+nmap <D-v> "+p
 " 打开javascript折叠
-let b:javaiscript_fold=1
+let b:javascript_fold=1
 " 打开javascript对dom、html和css的支持
 let javascript_enable_domhtmlcss=1
 " 设置字典 ~/.vim/dict/文件的路径
@@ -259,5 +241,5 @@ smap <silent> <C-e> <Plug>(neocomplcache_snippets_expand)
 "-----------------------------------------------------------------
 "-----------------------------------------------------------------
 " plugin – a.vim
-"----------------------------------------------------------------
+"-----------------------------------------------------------------
 set whichwrap=b,s,h,l,<,>,[,] " 支持左右跨行移动
