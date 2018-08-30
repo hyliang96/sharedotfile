@@ -14,7 +14,7 @@ ln -s `echo ~/.sharedotfile/.* | grep -v .git`  .
 * make soft link from your script dir to all the visible files under this dir (expect README.md)
 ```bash
 cd /path/to/your/scripts/
-ln -s `echo ~/.sharedotfile/* | grep  -v RREAADME.md` .
+ln -s `echo ~/.sharedotfile/* | grep  -v README.md` .
 ```
 
 ### use
