@@ -1,0 +1,318 @@
+#!/usr/bin/bash
+# 服务器、笔记本、WSL 共享的alias配置
+
+# ---------------- alias to resource ----------------
+alias nvd='watch -n 0.1 nvidia-smi' # 查GPU使用
+alias gpu='watch -n 0.1 gpustat'    # 查看GPU使用，谁在用
+alias gpujc='nvidia-who'            # 看用哪个进程在用显卡
+
+# 用法
+# `gpuid 0 python xxx.py` 现在暂时用GPU0运行 xxx.py
+# `gpuid 0` 并不能使得接下来一直默认用GPU0运行各个程序
+gpuid()
+{
+    eval "CUDA_VISIBLE_DEVICES=$*"
+}
+
+alias mem='free -h'  # 查内存使用
+alias yp-a='df -h' # 查看所有硬盘使用
+alias yp='df -h' # 查看当前目录所在硬盘使用
+
+alias cuda-v='nvcc -V'      # 查看cuda版本
+
+alias xt='lsb_release -a'   # 查看操作系统版本
+alias ws='getconf LONG_BIT' # 查看系统位数
+alias nh='cat /proc/version' # 查看内核版本
+alias cpu-v='echo -n "logic cpu num:";  cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c' #  查看CPU信息（型号）
+sys()
+{
+	echo "系统: "; xt
+	echo -n "位数: "; ws
+	echo -n  "内核: "; nh
+	echo -n "CPU: "; cpu-v
+}
+
+# 总核数 = 物理CPU个数 X 每颗物理CPU的核数
+# 逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数
+alias pcpu-n='cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l' # 物理cpu数
+cpu-nh()	# 每个物理CPU的核数
+{
+	echo ${$(cat /proc/cpuinfo| grep "cpu cores"| uniq)//[^0-9]/}
+}
+alias lcpu-n='cat /proc/cpuinfo| grep "processor"| wc -l'   # 逻辑cpu数 
+cxc-n() # 超线程数目
+{
+	echo $((10#$(lcpu-n)/10#$(pcpu-n)/10#$(cpu-nh)))
+}
+cpun()
+{
+	echo -n "物理CPU数："; pcpu-n
+	echo -n "每CPU核数：";cpu-nh
+	echo -n "逻辑CPU数：";lcpu-n
+	echo -n "超线程数："; cxc-n 
+}
+
+
+alias size='du -hd 0' # sl <dir_path>， 查看某个文件、文件夹的大小，<dir_path>缺省则为当前目录 
+# 数文件/文件夹个数
+alias sl='python $myscript/sizelist.py' # sl <dir_path> ,查看某个目录及其下一级所有文件、文件夹的大小，<dir_path>缺省则为当前目录
+# sl为size ls之意, <dir_path>缺省则为当前目录
+alias count='python $myscript/countfile.py'
+# 列出 指定目录下子目录 含有某字符串的 文件/文件夹 的个数
+alias cl='python $myscript/countfile.py -lar'
+
+# -------------------- 网络------------------------- 
+alias nw='hostname -I' # 查看内网ip
+alias ww='curl ifconfig.me' # 查看外网ip
+# 查看端口
+dk()
+{   
+   eval "lsof -i:$1"
+}
+# -------------------- 进程管理 --------------------
+# 搜索进程
+alias jc='ps aux | grep -v grep | grep'
+# 按pid杀死进程
+alias kpid='kill -9'
+# 按jobs的号码杀掉进程
+kjob()
+{
+    for x in $*
+    do
+        kill %$x
+    done    
+}
+
+# --------------- alias dotfile ------------------
+# bash
+alias vbp='vim ~/.profile';			alias sbp='source ~/.profile'
+alias vbr='vim ~/.bashrc';			alias sbr='source ~/.bashrc'
+alias vba='vim ~/.bash_aliases';	alias vbas='vim ~/.bash_aliases_share';    alias sba='. ~/.bash_aliases'; 
+alias vbo='vim ~/.bash_logout';		alias sbo='source ~/.bash_logout'
+# zsh
+alias vze='vim ~/.zshenv';			alias sze='. ~/.zshenv'
+alias vzp='vim ~/.zprofile';		alias szp='. ~/.zprofile'
+alias vzr='vim ~/.zshrc';			alias szr='. ~/.zshrc'
+alias vzo='vim ~/.zlogout';			alias szo='.   ~/.zlogout'
+# others
+alias vtmux='vim ~/.tmux.conf';		alias stmux='tmux source-file ~/.tmux.conf'
+alias vvim='vim ~/.vimrc'           # vim 免source，重新开vim即生效
+alias vgit='vim ~/.gitconfig'
+
+# ---------------- 环境显示 -----------------------
+# 显示路径，换行分隔，例如 `showpa PATH`， `showpa <任何一环境变量>`                                                                                                                      
+showpa()
+{
+    eval "echo \$$1 | sed 's/:/\'$'\n/g'"
+}
+# 添加路径，例如 `addpa PATH <新路径>`
+addpa()
+{
+    eval "export $1=$2:\$$1"
+}
+# 删除路径，例如 `addpa PATH <待删除路径>` ，若待删除路径不在$PATH中，则不对$PATH做更改
+rmpa()
+{
+    newpath=$(eval "echo \$$1 | sed 's:$2\:::g' | sed 's:\:$2::g'")
+    # 路径有'/'，用'/'分隔会冲突，改用':'分隔
+    eval "export $1=$newpath"
+}
+
+# ---------------- alias sys command ----------------
+# some more ls aliases
+alias ll='ls -alFh'
+alias l='ls -CF'
+alias la='l -A'
+
+# safe remove
+sfrm()
+{
+    eval "mv -f $* $my/trash"
+}
+# 安全清空目录，包括隐藏文件（夹）
+srunder()
+{
+    for x in $*
+    do
+        sfrm $x/{*,.[!.]*}
+    done
+}
+# 直接清空目录，包括隐藏文件（夹）
+rmunder()
+{
+    for x in $*
+    do
+        rm $x/{*,.[!.]*} -rf
+    done
+}
+
+
+
+# 拷贝一个文件或文件夹（及其下各级所有文件），包括隐藏文件
+alias cp="cp -r"
+# `cp 目录/.`   拷贝一个目录下所有文件，目录自身不拷贝，拷隐藏文件
+# cpunder 一个或多个源目录 目标目录 
+cpunder()
+{
+    sourcepaths=${*:1:$#-1}
+    targetpath=${*:$#:1}
+    for x in $sourcepaths
+    do
+        cp $x/. $targetpath
+    done
+
+}
+# `cp 目录/*`   拷贝一个目录下所有文件，目录自身不拷贝，不拷隐藏文件 
+# cpseenunder 一个或多个源目录 目标目录
+cpseenunder()
+{
+    sourcepaths=${*:1:$#-1}
+    targetpath=${*:$#:1}
+    for x in $sourcepaths
+    do
+        cp $x/* $targetpath
+    done
+
+}
+
+alias md='mkdir'
+alias g='grep'
+alias lk='ln -s' 
+# lk <原身路径：可是文件、文件夹> <链接路径与名称>
+# 创建软连接
+alias ..='cd ../'
+c()
+{
+    if [ $# = 0 ]
+    then
+        cd $my
+    else
+        cd $*
+    fi
+}
+# 授权bash文件可执行
+alias kzx='chmod +x'
+# 通用解压
+alias jy='dtrx'
+# 用法：
+#     cd到解压路径
+#     jy 压缩文件的路径（可以多个）
+#     则自动将其解压到同名文件夹 
+# ---------------- alias to conda --------------
+alias act='source activate'
+alias dea='source deactivate'
+alias els='conda info -e' # 列出conda的环境
+enew() # enew 环境名字 python的版本  其他参数
+{
+    conda create -n $1 python=$2 ${@:3:$#}
+}
+ecp() # ecp 源环境名字 新环境名字
+{ 
+    conda create -n $2 --clone $1
+}
+erm() # erm 环境的名字
+{
+    conda remove -n $1 --all
+}
+
+# ---------------- alias to python ------------------ 
+alias py='python'
+alias py2='python2'
+alias ip='ipython'
+
+# -----------------  alias to tmux ------------------
+# list all session of tmux session
+alias tl='tmux ls'
+# kill a tmux session
+alias tk='tmux kill-session -t'
+# kill all tmux sessions i.e. kill the tmux server
+tka()
+{
+	answer=$(bash -c "read  -n 1 -p 'Do you want to kill the tmux server? [Y|N]' c; echo \$c")
+    echo
+    if [ "$answer" = "y" ] || [  "$answer" = "Y"  ]; then
+        tmux kill-server
+        echo 'killed'
+    else
+        echo "didn't kill"
+    fi
+}
+
+#              命令   (i)tm                        (i)tm 已有session名   (i)tm 新session名
+# 无tmux session 时   创建名为的default的session   --                    创建session 
+# 有tmux session 时   attach最近的session          attach该session       创建session
+# itm:与iterm2关联的tmux
+# tm：不关联iterm2的tmux
+itm() {
+    if [ $# = 0 ]; then
+        echo "argv num =0" 
+        tmux -CC attach ||  tmux -CC new -s default
+    else
+        session=$1
+        tmux -CC attach -t ${session} || tmux -CC new -s ${session}
+    fi
+}
+tm() {
+    if [ $# = 0 ]; then
+        echo "argv num =0" 
+        tmux attach ||  tmux new -s default
+    else
+        session=$1
+        tmuxattach -t ${session} || tmux new -s ${session}
+    fi
+}
+
+# ------------------ git ----------------------------
+alias gi='git init'
+alias gs='git status'
+alias ga='git add';          alias gaa='git add -A .'  # 添加所有增删改
+alias gc='git commit -m'
+alias grm='git rm -rf'
+alias gmv='git mv'
+alias glg='git log --graph --decorate --oneline --all'
+alias glgs='ggr --simplify-by-decoration'
+alias gup='git branch -u'
+alias guu='git branch --unset-upstream'
+alias gul='git branch -avv'
+
+alias gpsu='git push -u'
+alias gps='git push'
+alias gfc='git fetch'
+alias gpl='git pull'
+
+alias gcl='git clone'
+alias gbr='git branch -b'
+alias gmg='git merge'
+alias gch='git checkout'
+
+alias ght='ssh -T git@github.com' # github test
+alias gra='git remote add'
+gha()  # github add
+{
+    if [ $# = 1 ]; then
+        user=hyliang96
+        name=origin
+        repo=$1
+    elif [ $# = 2 ]; then
+        user=hyliang96
+        name=$1
+        repo=$2
+        echo 2
+    elif [ $# = 3 ]; then
+        name=$1
+        user=$2
+        repo=$3
+        echo 3
+    fi
+    echo $user $name $repo
+    git remote add $name git@github.com:$user/$repo.git
+}
+alias grrm='git remote rm'
+alias grrn='git remote rename'
+alias grl='git remote'
+alias grs='git remote show'
+
+
+
+
+
