@@ -243,3 +243,25 @@ smap <silent> <C-e> <Plug>(neocomplcache_snippets_expand)
 " plugin – a.vim
 "-----------------------------------------------------------------
 set whichwrap=b,s,h,l,<,>,[,] " 支持左右跨行移动
+
+
+" 复制黏贴
+" mac下command+V/C 复制黏贴 有效
+" mac访问linux服务器无效，因为command不是linux能识别的按键
+
+" 在任何模式下，粘贴前，ctrl+v 开paste，而后在插入模式下可粘贴不出现自动缩进；
+" 在任何模式下，粘贴后，ctrl+v 关paste，恢复自动缩进
+set pastetoggle=<C-v>
+
+" 鼠标、vy选中不会选到行号
+" ctrl+m 打开行号
+map <C-m> :set invnumber<CR>
+
+" 从服务器的vim里复制/剪切文字到本地电脑的剪切板
+" 先用鼠标或先按v键选中，再按d(相当于cmd+x)/y(相当于cmd+c)，可跨页鼠标选中
+" v,y复制/v,d剪切/(数字)dd 整行剪切，发送到笔记本的系统剪切板，但不清空vim的寄存器
+vmap y y:call system('nc localhost 8377', @")<CR>
+vmap d d:call system('nc localhost 8377', @")<CR>
+nmap dd dd:call system('nc localhost 8377', @")<CR>
+" " ctrl+a 整个文件发送到笔记本的系统剪切板
+map <C-a> :%w !nc localhost 8377<CR><CR>
