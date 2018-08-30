@@ -8,7 +8,7 @@ the shared dotfiles among all my servers, mac and cp (WSL)
 * make soft links from $HOME to  all the dotfiles under this dir  (expect .git) 
 ```bash
 cd ~
-ln -s `echo ~/.sharedotfile/.* | grep -v .git`  ~
+ln -s `echo ~/.sharedotfile/.* | grep -v .git`  .
 ```
 
 * make soft link from your script dir to all the visible files under this dir (expect README.md)
