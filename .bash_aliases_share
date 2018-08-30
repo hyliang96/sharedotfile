@@ -281,7 +281,7 @@ alias gfc='git fetch'
 alias gpl='git pull'
 
 alias gcl='git clone'
-alias gbr='git branch -b'
+alias gbr='git branch -a'
 alias gmg='git merge'
 alias gch='git checkout'
 
