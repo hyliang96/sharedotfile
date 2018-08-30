@@ -258,7 +258,7 @@ tm() {
         tmux attach ||  tmux new -s default
     else
         session=$1
-        tmuxattach -t ${session} || tmux new -s ${session}
+        tmux attach -t ${session} || tmux new -s ${session}
     fi
 }
 
