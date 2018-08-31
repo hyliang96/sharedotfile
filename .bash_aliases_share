@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 # 服务器、笔记本、WSL 共享的alias配置
 
-echo sbas
 
 # ---------------- alias to resource ----------------
 alias nvd='watch -n 0.1 nvidia-smi' # 查GPU使用

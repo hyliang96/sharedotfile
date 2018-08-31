@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-echo .zshrc
 # Antigen: https://github.com/zsh-users/antigen
 ANTIGEN="$HOME/.local/bin/antigen.zsh"
 
