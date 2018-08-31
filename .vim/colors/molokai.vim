@@ -26,9 +26,9 @@ else
     let s:molokai_original = 0
 endif
 
-
-" 下面凡见到Normal，则将其字体背景色设为透明，故可显现其后的bg（背景色）
-" hi Normal  ctermbg=NONE 
+" tmux与vim配色冲突：在tmux里进入vim，文字自带不透明纯黑底色
+" 将全文中，所有hi Normal ... ctermbg=xxx改为hi Normal ... ctermbg=NONE
+" 其含义为，将其字体背景色设为透明，故可显现其后的bg（背景色）
 " 其他参数 cterm ctermfg不用设
 
 hi Boolean         guifg=#AE81FF
