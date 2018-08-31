@@ -18,5 +18,10 @@ ln -s `echo ~/.sharedotfile/* | grep  -v README.md` .
 ```
 
 ### use
-* git pull it when you login a computer
+#### manully
+* pull : `./pulldotfile.sh`
+* push all change:	`./pushdotfile.sh`
+
+#### automatically
+* git pull it when you login a computer 
 * git push it when you logout the computer
