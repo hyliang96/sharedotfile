@@ -1,4 +1,5 @@
 
+
 cd ~/.sharedotfile
 
 {
