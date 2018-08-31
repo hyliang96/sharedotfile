@@ -27,8 +27,9 @@ else
 endif
 
 
-hi Normal cterm=NONE ctermbg=NONE ctermfg=NONE
-
+" 下面凡见到Normal，则将其字体背景色设为透明，故可显现其后的bg（背景色）
+" hi Normal  ctermbg=NONE 
+" 其他参数 cterm ctermfg不用设
 
 hi Boolean         guifg=#AE81FF
 hi Character       guifg=#E6DB74
@@ -277,9 +278,7 @@ if &t_Co > 255
    endif
 end
 
-" Must be at the end, because of ctermbg=234 bug.
-" https://groups.google.com/forum/#!msg/vim_dev/afPqwAFNdrU/nqh6tOM87QUJ
-set bg=dark
-" transparent background
-" hi Normal guibg=bg ctermbg=bg
-" hi Normal guibg=NONE ctermbg=NONE
+" set total background color
+" see more: https://groups.google.com/forum/#!msg/vim_dev/afPqwAFNdrU/nqh6tOM87QUJ
+" set bg=dark
+
