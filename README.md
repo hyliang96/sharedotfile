@@ -1,6 +1,7 @@
 # sharedotfile
 the shared dotfiles among all my servers, mac and cp (WSL)
 
+
 ### install
 * git clone this repo to a new computer, put the dir on any path you like
 
