@@ -99,8 +99,7 @@ alias vzo='vim ~/.zlogout';			alias szo='.   ~/.zlogout'
 alias vtmux='vim ~/.tmux.conf';		alias stmux='tmux source-file ~/.tmux.conf'
 alias vvim='vim ~/.vimrc'           # vim 免source，重新开vim即生效
 alias vgit='vim ~/.gitconfig'
-# update dotfiles
-alias dotpl='~/.sharedotfile/pulldotfile.sh'
+# update dotfilesalias dotpl='~/.sharedotfile/pulldotfile.sh'
 alias dotps='~/.sharedotfile/pushdotfile.sh'
 
 # ---------------- 环境显示 -----------------------
@@ -250,7 +249,6 @@ tka()
 # tm：不关联iterm2的tmux
 itm() {
     if [ $# = 0 ]; then
-        echo "argv num =0" 
         tmux -CC attach ||  tmux -CC new -s default
     else
         session=$1
