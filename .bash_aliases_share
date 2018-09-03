@@ -257,7 +257,6 @@ itm() {
 }
 tm() {
     if [ $# = 0 ]; then
-        echo "argv num =0" 
         tmux attach ||  tmux new -s default
     else
         session=$1
