@@ -27,30 +27,37 @@ alias nh='cat /proc/version' # 查看内核版本
 alias cpu-v='echo -n "logic cpu num:";  cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c' #  查看CPU信息（型号）
 sys()
 {
-	echo "系统: "; xt
-	echo -n "位数: "; ws
-	echo -n  "内核: "; nh
-	echo -n "CPU: "; cpu-v
+    echo "系统: "; xt
+    echo -n "位数: "; ws
+    echo -n  "内核: "; nh
+    echo -n "CPU: "; cpu-v
 }
 
 # 总核数 = 物理CPU个数 X 每颗物理CPU的核数
 # 逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数
 alias pcpu-n='cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l' # 物理cpu数
-cpu-nh()	# 每个物理CPU的核数
+cpu-nh()    # 每个物理CPU的核数
 {
-	echo ${$(cat /proc/cpuinfo| grep "cpu cores"| uniq)//[^0-9]/}
+    echo ${$(cat /proc/cpuinfo| grep "cpu cores"| uniq)//[^0-9]/}
 }
 alias lcpu-n='cat /proc/cpuinfo| grep "processor"| wc -l'   # 逻辑cpu数
 cxc-n() # 超线程数目
 {
-	echo $((10#$(lcpu-n)/10#$(pcpu-n)/10#$(cpu-nh)))
+    echo $((10#$(lcpu-n)/10#$(pcpu-n)/10#$(cpu-nh)))
 }
 cpun()
 {
+<<<<<<< HEAD
 	echo -n "物理CPU数："; pcpu-n
 	echo -n "每CPU核数：";cpu-nh
 	echo -n "逻辑CPU数：";lcpu-n
 	echo -n "超线程数："; cxc-n
+=======
+    echo -n "物理CPU数："; pcpu-n
+    echo -n "每CPU核数：";cpu-nh
+    echo -n "逻辑CPU数：";lcpu-n
+    echo -n "超线程数："; cxc-n
+>>>>>>> e0c160c1794b7711f8dc81b379bcdb37f92d8d01
 }
 
 
@@ -86,17 +93,24 @@ kjob()
 
 # --------------- alias dotfile ------------------
 # bash
+<<<<<<< HEAD
 alias vbp='sub ~/.profile';			alias sbp='source ~/.profile'
 alias vbr='sub ~/.bashrc';			alias sbr='source ~/.bashrc'
 alias vba='sub ~/.bash_aliases';	alias vbas='sub ~/.bash_aliases_share';    alias sba='. ~/.bash_aliases';
 alias vbo='sub ~/.bash_logout';		alias sbo='source ~/.bash_logout'
+=======
+alias vbp='sub ~/.profile';         alias sbp='source ~/.profile'
+alias vbr='sub ~/.bashrc';          alias sbr='source ~/.bashrc'
+alias vba='sub ~/.bash_aliases';    alias vbas='sub ~/.bash_aliases_share';    alias sba='. ~/.bash_aliases';
+alias vbo='sub ~/.bash_logout';     alias sbo='source ~/.bash_logout'
+>>>>>>> e0c160c1794b7711f8dc81b379bcdb37f92d8d01
 # zsh
-alias vze='sub ~/.zshenv';			alias sze='. ~/.zshenv'
-alias vzp='sub ~/.zprofile';		alias szp='. ~/.zprofile'
-alias vzr='sub ~/.zshrc';			alias szr='. ~/.zshrc'
-alias vzo='sub ~/.zlogout';			alias szo='.   ~/.zlogout'
+alias vze='sub ~/.zshenv';          alias sze='. ~/.zshenv'
+alias vzp='sub ~/.zprofile';        alias szp='. ~/.zprofile'
+alias vzr='sub ~/.zshrc';           alias szr='. ~/.zshrc'
+alias vzo='sub ~/.zlogout';         alias szo='.   ~/.zlogout'
 # others
-alias vtmux='sub ~/.tmux.conf';		alias stmux='tmux source-file ~/.tmux.conf'
+alias vtmux='sub ~/.tmux.conf';     alias stmux='tmux source-file ~/.tmux.conf'
 alias vvim='sub ~/.vimrc'           # vim 免source，重新开vim即生效
 alias vgit='sub ~/.gitconfig'
 # update dotfiles
@@ -233,7 +247,7 @@ alias tk='tmux kill-session -t'
 # kill all tmux sessions i.e. kill the tmux server
 tka()
 {
-	answer=$(bash -c "read  -n 1 -p 'Do you want to kill the tmux server? [Y|N]' c; echo \$c")
+    answer=$(bash -c "read  -n 1 -p 'Do you want to kill the tmux server? [Y|N]' c; echo \$c")
     echo
     if [ "$answer" = "y" ] || [  "$answer" = "Y"  ]; then
         tmux kill-server
