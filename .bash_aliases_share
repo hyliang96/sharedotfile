@@ -266,7 +266,9 @@ tm() {
 }
 
 # ------------------ git ----------------------------
+# 初创
 alias gi='git init'       # 创建.git:    cd 项目文件夹; gi
+# 暂存
 alias gs='git status'     # 查看当前状态:  gs
 alias ga='git add'        # 暂存增改文件:  ga 文件
 alias gaa='git add -A .'  # 暂存所有增删改文件：gaa
@@ -285,7 +287,7 @@ alias glgs='glg --simplify-by-decoration'               #列出简化历史图�
 # 远仓
 alias ght='ssh -T git@github.com' # 测试github连接：ght
 alias gra='git remote add'        # 关联远仓：gra 远仓名（即远程repo在本地的名字） 远程repo的网址
-gha()  # 添加github上的远程repo
+gha()  # 关联github上的远程repo
 # 先在github上建立一个repo
 # 然后 gha [[github用户名（默认hyliang96）] 远仓名（默认origin)] github上repo名
 {
@@ -315,15 +317,15 @@ alias grls='git remote show'    # 列出远仓：    grls
 alias gup='git branch -u'       # 将当前枝关联远枝：           gup 远仓名 远枝名
 alias guu='git branch --unset-upstream' # 将当前枝取关远枝：   guu 远仓名 远枝名
 # 推拉
-alias gpsu='git push -u'        # 关联远枝并推送：gpsu 远仓名 远枝名
-alias gps='git push'            # 推送当前枝：           gps [ 远仓名 [远枝名]]
+alias gpsu='git push -u'        # 初次推送用，关联远枝并推送，若远仓无此远枝，则创建之：  gpsu 远仓名 远枝名
+alias gps='git push'            # 推送当前枝：            gps [ 远仓名 [远枝名]]
 alias gfc='git fetch'           # 拉去到当前枝：          gfc [ 远仓名 [远枝名]]
 alias gpl='git pull'            # 拉去到当前枝并与之合并：  gpl [ 远仓名 [远枝名]]
-# gps，gfc，gpl皆可省参数：
-# 若该远仓的远枝已关联，则[远枝名]不写
-# 若还只关联一个远仓，则[ 远仓名 [远枝名]]不写
+                                # gps，gfc，gpl皆可省参数：
+                                # 若该远仓的远枝已关联，则[远枝名]不写
+                                # 若还只关联一个远仓，则[ 远仓名 [远枝名]]不写
 alias gcl='git clone'           # 克隆远枝：gcl 远仓网址
-# 请用http格式，若用ssh格式则需要验证密钥
+                                # 请用http格式，若用ssh格式则需要验证密钥
 
 
 
