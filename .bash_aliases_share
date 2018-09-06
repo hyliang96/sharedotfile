@@ -47,17 +47,10 @@ cxc-n() # 超线程数目
 }
 cpun()
 {
-<<<<<<< HEAD
-	echo -n "物理CPU数："; pcpu-n
-	echo -n "每CPU核数：";cpu-nh
-	echo -n "逻辑CPU数：";lcpu-n
-	echo -n "超线程数："; cxc-n
-=======
     echo -n "物理CPU数："; pcpu-n
     echo -n "每CPU核数：";cpu-nh
     echo -n "逻辑CPU数：";lcpu-n
     echo -n "超线程数："; cxc-n
->>>>>>> e0c160c1794b7711f8dc81b379bcdb37f92d8d01
 }
 
 
@@ -93,17 +86,10 @@ kjob()
 
 # --------------- alias dotfile ------------------
 # bash
-<<<<<<< HEAD
-alias vbp='sub ~/.profile';			alias sbp='source ~/.profile'
-alias vbr='sub ~/.bashrc';			alias sbr='source ~/.bashrc'
-alias vba='sub ~/.bash_aliases';	alias vbas='sub ~/.bash_aliases_share';    alias sba='. ~/.bash_aliases';
-alias vbo='sub ~/.bash_logout';		alias sbo='source ~/.bash_logout'
-=======
 alias vbp='sub ~/.profile';         alias sbp='source ~/.profile'
 alias vbr='sub ~/.bashrc';          alias sbr='source ~/.bashrc'
 alias vba='sub ~/.bash_aliases';    alias vbas='sub ~/.bash_aliases_share';    alias sba='. ~/.bash_aliases';
 alias vbo='sub ~/.bash_logout';     alias sbo='source ~/.bash_logout'
->>>>>>> e0c160c1794b7711f8dc81b379bcdb37f92d8d01
 # zsh
 alias vze='sub ~/.zshenv';          alias sze='. ~/.zshenv'
 alias vzp='sub ~/.zprofile';        alias szp='. ~/.zprofile'
