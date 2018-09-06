@@ -86,19 +86,19 @@ kjob()
 
 # --------------- alias dotfile ------------------
 # bash
-alias vbp='vim ~/.profile';			alias sbp='source ~/.profile'
-alias vbr='vim ~/.bashrc';			alias sbr='source ~/.bashrc'
-alias vba='vim ~/.bash_aliases';	alias vbas='vim ~/.bash_aliases_share';    alias sba='. ~/.bash_aliases'; 
-alias vbo='vim ~/.bash_logout';		alias sbo='source ~/.bash_logout'
+alias vbp='sub ~/.profile';			alias sbp='source ~/.profile'
+alias vbr='sub ~/.bashrc';			alias sbr='source ~/.bashrc'
+alias vba='sub ~/.bash_aliases';	alias vbas='sub ~/.bash_aliases_share';    alias sba='. ~/.bash_aliases'; 
+alias vbo='sub ~/.bash_logout';		alias sbo='source ~/.bash_logout'
 # zsh
-alias vze='vim ~/.zshenv';			alias sze='. ~/.zshenv'
-alias vzp='vim ~/.zprofile';		alias szp='. ~/.zprofile'
-alias vzr='vim ~/.zshrc';			alias szr='. ~/.zshrc'
-alias vzo='vim ~/.zlogout';			alias szo='.   ~/.zlogout'
+alias vze='sub ~/.zshenv';			alias sze='. ~/.zshenv'
+alias vzp='sub ~/.zprofile';		alias szp='. ~/.zprofile'
+alias vzr='sub ~/.zshrc';			alias szr='. ~/.zshrc'
+alias vzo='sub ~/.zlogout';			alias szo='.   ~/.zlogout'
 # others
-alias vtmux='vim ~/.tmux.conf';		alias stmux='tmux source-file ~/.tmux.conf'
-alias vvim='vim ~/.vimrc'           # vim 免source，重新开vim即生效
-alias vgit='vim ~/.gitconfig'
+alias vtmux='sub ~/.tmux.conf';		alias stmux='tmux source-file ~/.tmux.conf'
+alias vvim='sub ~/.vimrc'           # vim 免source，重新开vim即生效
+alias vgit='sub ~/.gitconfig'
 # update dotfilesalias dotpl='~/.sharedotfile/pulldotfile.sh'
 alias dotps='~/.sharedotfile/pushdotfile.sh'
 
