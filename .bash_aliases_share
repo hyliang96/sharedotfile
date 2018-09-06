@@ -27,34 +27,34 @@ alias nh='cat /proc/version' # 查看内核版本
 alias cpu-v='echo -n "logic cpu num:";  cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c' #  查看CPU信息（型号）
 sys()
 {
-	echo "系统: "; xt
-	echo -n "位数: "; ws
-	echo -n  "内核: "; nh
-	echo -n "CPU: "; cpu-v
+    echo "系统: "; xt
+    echo -n "位数: "; ws
+    echo -n  "内核: "; nh
+    echo -n "CPU: "; cpu-v
 }
 
 # 总核数 = 物理CPU个数 X 每颗物理CPU的核数
 # 逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数
 alias pcpu-n='cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l' # 物理cpu数
-cpu-nh()	# 每个物理CPU的核数
+cpu-nh()    # 每个物理CPU的核数
 {
-	echo ${$(cat /proc/cpuinfo| grep "cpu cores"| uniq)//[^0-9]/}
+    echo ${$(cat /proc/cpuinfo| grep "cpu cores"| uniq)//[^0-9]/}
 }
-alias lcpu-n='cat /proc/cpuinfo| grep "processor"| wc -l'   # 逻辑cpu数 
+alias lcpu-n='cat /proc/cpuinfo| grep "processor"| wc -l'   # 逻辑cpu数
 cxc-n() # 超线程数目
 {
-	echo $((10#$(lcpu-n)/10#$(pcpu-n)/10#$(cpu-nh)))
+    echo $((10#$(lcpu-n)/10#$(pcpu-n)/10#$(cpu-nh)))
 }
 cpun()
 {
-	echo -n "物理CPU数："; pcpu-n
-	echo -n "每CPU核数：";cpu-nh
-	echo -n "逻辑CPU数：";lcpu-n
-	echo -n "超线程数："; cxc-n 
+    echo -n "物理CPU数："; pcpu-n
+    echo -n "每CPU核数：";cpu-nh
+    echo -n "逻辑CPU数：";lcpu-n
+    echo -n "超线程数："; cxc-n
 }
 
 
-alias size='du -hd 0' # sl <dir_path>， 查看某个文件、文件夹的大小，<dir_path>缺省则为当前目录 
+alias size='du -hd 0' # sl <dir_path>， 查看某个文件、文件夹的大小，<dir_path>缺省则为当前目录
 # 数文件/文件夹个数
 alias sl='python $myscript/sizelist.py' # sl <dir_path> ,查看某个目录及其下一级所有文件、文件夹的大小，<dir_path>缺省则为当前目录
 # sl为size ls之意, <dir_path>缺省则为当前目录
@@ -62,12 +62,12 @@ alias count='python $myscript/countfile.py'
 # 列出 指定目录下子目录 含有某字符串的 文件/文件夹 的个数
 alias cl='python $myscript/countfile.py -lar'
 
-# -------------------- 网络------------------------- 
+# -------------------- 网络-------------------------
 alias nw='hostname -I' # 查看内网ip
 alias ww='curl ifconfig.me' # 查看外网ip
 # 查看端口
 dk()
-{   
+{
    eval "lsof -i:$1"
 }
 # -------------------- 进程管理 --------------------
@@ -81,29 +81,29 @@ kjob()
     for x in $*
     do
         kill %$x
-    done    
+    done
 }
 
 # --------------- alias dotfile ------------------
 # bash
-alias vbp='sub ~/.profile';			alias sbp='source ~/.profile'
-alias vbr='sub ~/.bashrc';			alias sbr='source ~/.bashrc'
-alias vba='sub ~/.bash_aliases';	alias vbas='sub ~/.bash_aliases_share';    alias sba='. ~/.bash_aliases'; 
-alias vbo='sub ~/.bash_logout';		alias sbo='source ~/.bash_logout'
+alias vbp='sub ~/.profile';         alias sbp='source ~/.profile'
+alias vbr='sub ~/.bashrc';          alias sbr='source ~/.bashrc'
+alias vba='sub ~/.bash_aliases';    alias vbas='sub ~/.bash_aliases_share';    alias sba='. ~/.bash_aliases';
+alias vbo='sub ~/.bash_logout';     alias sbo='source ~/.bash_logout'
 # zsh
-alias vze='sub ~/.zshenv';			alias sze='. ~/.zshenv'
-alias vzp='sub ~/.zprofile';		alias szp='. ~/.zprofile'
-alias vzr='sub ~/.zshrc';			alias szr='. ~/.zshrc'
-alias vzo='sub ~/.zlogout';			alias szo='.   ~/.zlogout'
+alias vze='sub ~/.zshenv';          alias sze='. ~/.zshenv'
+alias vzp='sub ~/.zprofile';        alias szp='. ~/.zprofile'
+alias vzr='sub ~/.zshrc';           alias szr='. ~/.zshrc'
+alias vzo='sub ~/.zlogout';         alias szo='.   ~/.zlogout'
 # others
-alias vtmux='sub ~/.tmux.conf';		alias stmux='tmux source-file ~/.tmux.conf'
+alias vtmux='sub ~/.tmux.conf';     alias stmux='tmux source-file ~/.tmux.conf'
 alias vvim='sub ~/.vimrc'           # vim 免source，重新开vim即生效
 alias vgit='sub ~/.gitconfig'
 # update dotfilesalias dotpl='~/.sharedotfile/pulldotfile.sh'
 alias dotps='~/.sharedotfile/pushdotfile.sh'
 
 # ---------------- 环境显示 -----------------------
-# 显示路径，换行分隔，例如 `showpa PATH`， `showpa <任何一环境变量>`                                                                                                                      
+# 显示路径，换行分隔，例如 `showpa PATH`， `showpa <任何一环境变量>`
 showpa()
 {
     eval "echo \$$1 | sed 's/:/\'$'\n/g'"
@@ -154,7 +154,7 @@ rmunder()
 # 拷贝一个文件或文件夹（及其下各级所有文件），包括隐藏文件
 alias cp="cp -r"
 # `cp 目录/.`   拷贝一个目录下所有文件，目录自身不拷贝，拷隐藏文件
-# cpunder 一个或多个源目录 目标目录 
+# cpunder 一个或多个源目录 目标目录
 cpunder()
 {
     sourcepaths=${*:1:$#-1}
@@ -165,7 +165,7 @@ cpunder()
     done
 
 }
-# `cp 目录/*`   拷贝一个目录下所有文件，目录自身不拷贝，不拷隐藏文件 
+# `cp 目录/*`   拷贝一个目录下所有文件，目录自身不拷贝，不拷隐藏文件
 # cpseenunder 一个或多个源目录 目标目录
 cpseenunder()
 {
@@ -180,7 +180,7 @@ cpseenunder()
 
 alias md='mkdir'
 alias g='grep'
-alias lk='ln -s' 
+alias lk='ln -s'
 # lk <原身路径：可是文件、文件夹> <链接路径与名称>
 # 创建软连接
 alias ..='cd ../'
@@ -201,7 +201,7 @@ alias jy='dtrx'
 # 用法：
 #     cd到解压路径
 #     jy 压缩文件的路径（可以多个）
-#     则自动将其解压到同名文件夹 
+#     则自动将其解压到同名文件夹
 # ---------------- alias to conda --------------
 alias act='source activate'
 alias dea='source deactivate'
@@ -211,7 +211,7 @@ enew() # enew 环境名字 python的版本  其他参数
     conda create -n $1 python=$2 ${@:3:$#}
 }
 ecp() # ecp 源环境名字 新环境名字
-{ 
+{
     conda create -n $2 --clone $1
 }
 erm() # erm 环境的名字
@@ -219,7 +219,7 @@ erm() # erm 环境的名字
     conda remove -n $1 --all
 }
 
-# ---------------- alias to python ------------------ 
+# ---------------- alias to python ------------------
 alias py='python'
 alias py2='python2'
 alias ip='ipython'
@@ -232,7 +232,7 @@ alias tk='tmux kill-session -t'
 # kill all tmux sessions i.e. kill the tmux server
 tka()
 {
-	answer=$(bash -c "read  -n 1 -p 'Do you want to kill the tmux server? [Y|N]' c; echo \$c")
+    answer=$(bash -c "read  -n 1 -p 'Do you want to kill the tmux server? [Y|N]' c; echo \$c")
     echo
     if [ "$answer" = "y" ] || [  "$answer" = "Y"  ]; then
         tmux kill-server
@@ -243,7 +243,7 @@ tka()
 }
 
 #              命令   (i)tm                        (i)tm 已有session名   (i)tm 新session名
-# 无tmux session 时   创建名为的default的session   --                    创建session 
+# 无tmux session 时   创建名为的default的session   --                    创建session
 # 有tmux session 时   attach最近的session          attach该session       创建session
 # itm:与iterm2关联的tmux
 # tm：不关联iterm2的tmux
