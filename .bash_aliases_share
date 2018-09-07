@@ -70,6 +70,7 @@ dk()
 {
    eval "lsof -i:$1"
 }
+
 # -------------------- 进程管理 --------------------
 # 搜索进程
 alias jc='ps aux | grep -v grep | grep'
@@ -99,6 +100,7 @@ alias vzo='sub ~/.zlogout';         alias szo='.   ~/.zlogout'
 alias vtmux='sub ~/.tmux.conf';     alias stmux='tmux source-file ~/.tmux.conf'
 alias vvim='sub ~/.vimrc'           # vim 免source，重新开vim即生效
 alias vgit='sub ~/.gitconfig'
+alias vssh='sub ~/.ssh/config'
 # update dotfiles
 alias dotpl='~/.sharedotfile/pulldotfile.sh'
 alias dotps='~/.sharedotfile/pushdotfile.sh'
@@ -203,6 +205,7 @@ alias jy='dtrx'
 #     cd到解压路径
 #     jy 压缩文件的路径（可以多个）
 #     则自动将其解压到同名文件夹
+
 # ---------------- alias to conda --------------
 alias act='source activate'
 alias dea='source deactivate'
@@ -243,9 +246,9 @@ tka()
     fi
 }
 
-#              命令   (i)tm                        (i)tm 已有session名   (i)tm 新session名
-# 无tmux session 时   创建名为的default的session   --                    创建session
-# 有tmux session 时   attach最近的session          attach该session       创建session
+#              命令   (i)tm                      (i)tm 已有session名    (i)tm 新session名
+# 无tmux session 时   创建名为的default的session    --                   创建session
+# 有tmux session 时   attach最近的session         attach该session       创建session
 # itm:与iterm2关联的tmux
 # tm：不关联iterm2的tmux
 itm() {
