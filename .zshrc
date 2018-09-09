@@ -13,9 +13,9 @@ if [ ! -f "$ANTIGEN" ]; then
 	URL="http://git.io/antigen"
 	TMPFILE="/tmp/antigen.zsh"
 	if [ -x "$(which curl)" ]; then
-		curl -L "$URL" -o "$TMPFILE" 
+		curl -L "$URL" -o "$TMPFILE"
 	elif [ -x "$(which wget)" ]; then
-		wget "$URL" -O "$TMPFILE" 
+		wget "$URL" -O "$TMPFILE"
 	else
 		echo "ERROR: please install curl or wget before installation !!"
 		exit
@@ -121,7 +121,7 @@ ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=009
 ZSH_HIGHLIGHT_STYLES[assign]=none
 
 # load local config
-[ -f "$HOME/.local/etc/config.zsh" ] && source "$HOME/.local/etc/config.zsh" 
+[ -f "$HOME/.local/etc/config.zsh" ] && source "$HOME/.local/etc/config.zsh"
 [ -f "$HOME/.local/etc/local.zsh" ] && source "$HOME/.local/etc/local.zsh"
 
 # enable syntax highlighting
@@ -181,9 +181,6 @@ setopt HIST_VERIFY # Don't execute immediately upon history expansion.
 zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.pdf|*.exe|*.dll'
 zstyle ':completion:*:*sh:*:' tag-order files
 
-
-export LC_ALL=en_US.UTF-8  
-export LANG=en_US.UTF-8
 
 
 # alias
