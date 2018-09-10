@@ -92,6 +92,8 @@ sub(){
     # 本地是Mac，且有sublime
         open -a "/Applications/Sublime Text.app" $*
     else
+        echo open sublime on mac client
+        sleep 0.2
     # 本地非mac，或无sublime
         dirs=""
         for arg in $@; do
