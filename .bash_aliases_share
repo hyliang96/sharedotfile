@@ -92,14 +92,18 @@ sub(){
     # 本地是Mac，且有sublime
         open -a "/Applications/Sublime Text.app" $*
     else
-        echo open sublime on mac client
-        sleep 0.2
+        n_file=0
     # 本地非mac，或无sublime
         dirs=""
         for arg in $@; do
             if [ -f $arg ]; then
+                if [ $n_file = 0 ]; then
+                    echo open sublime on mac client
+                    sleep 0.2
+                fi
                 # echo "用笔记本上的sublime开文件 $arg"
                 rsub $arg
+                n_file=1
             elif [ -d $arg ]; then
                 # echo "用笔记本上的sublime开文件夹: $arg"
                 dirs="$dirs $(cd $arg; pwd)"
