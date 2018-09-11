@@ -99,7 +99,7 @@ sub(){
             if [ -f $arg ]; then
                 if [ $n_file = 0 ]; then
                     echo open sublime on mac client
-                    sleep 0.2
+                    sleep 0.5
                 fi
                 # echo "用笔记本上的sublime开文件 $arg"
                 rsub $arg
