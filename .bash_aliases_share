@@ -310,6 +310,7 @@ alias grs='git reset'     # 清空暂存到上次提交时：grs
 # 提交
 alias gc='git commit -m'  # 提交：gc "xxx" [options]
 # 分支
+alias gb='git branch'     # 新建分支： gb 分支名
 alias gbls='git branch -avv' # 列出所有本地枝，及其关联的远枝： gbls
 alias gch='git checkout'    # 切换分支：gch 分支名/历史提交编号
 alias gmg='git merge'       # 将其与当前枝合并：gmg 待合并分支
