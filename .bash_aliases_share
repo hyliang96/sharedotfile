@@ -61,12 +61,19 @@ alias sl='python $myscript/sizelist.py' # sl <dir_path> ,查看某个目录及�
 alias count='python $myscript/countfile.py'
 # 列出 指定目录下子目录 含有某字符串的 文件/文件夹 的个数
 alias cl='python $myscript/countfile.py -lar'
-# alias cz() # 查找
-# {
-#     path=$1
-#     shift
-#     find $path -name $* 2>&1 | grep -v "Permission denied"
-# }
+findname() # 按名字查找
+{
+    if [ $# -lt 2 ]; then
+        echo "Usage: fd <path> <name>"
+    else
+        path=$1
+        shift
+        echo path $path
+        echo rest $*
+        find $path -name $* 2>&1
+        # | grep -v "Permission denied"
+    fi
+}
 
 # -------------------- 网络-------------------------
 alias nw='hostname -I' # 查看内网ip
@@ -219,7 +226,7 @@ cpseenunder()
 }
 
 alias md='mkdir'
-alias g='grep'
+# alias g='grep'
 alias lk='ln -s'
 # lk <原身路径：可是文件、文件夹> <链接路径与名称>
 # 创建软连接
