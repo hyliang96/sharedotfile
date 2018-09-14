@@ -68,7 +68,7 @@ czmz() # 按名字查找
     else
         path=$1
         # args=${@:2:$#}
-        echo $args
+        # echo $args
         # shift 1
         echo path $path
         # echo rest $*
