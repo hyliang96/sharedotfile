@@ -61,16 +61,18 @@ alias sl='python $myscript/sizelist.py' # sl <dir_path> ,查看某个目录及�
 alias count='python $myscript/countfile.py'
 # 列出 指定目录下子目录 含有某字符串的 文件/文件夹 的个数
 alias cl='python $myscript/countfile.py -lar'
-findname() # 按名字查找
+czmz() # 按名字查找
 {
     if [ $# -lt 2 ]; then
         echo "Usage: fd <path> <name>"
     else
         path=$1
-        shift
+        # args=${@:2:$#}
+        echo $args
+        # shift 1
         echo path $path
-        echo rest $*
-        find $path -name $* 2>&1
+        # echo rest $*
+        # echo "find ${path} -name $args 2>&1"
         # | grep -v "Permission denied"
     fi
 }
