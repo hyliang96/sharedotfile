@@ -311,6 +311,7 @@ alias gmv='git mv'        # （移动并）暂存移动： gmv 文件 文件夹 
 alias grs='git reset'     # 清空暂存到上次提交时：grs
 # 提交
 alias gc='git commit -m'  # 提交：gc "xxx" [options]
+alias gcam='git commit --amend' # 覆盖上一次提交：gcam，然后弹出文本编辑器，编辑上次提交的说明
 # 分支
 gb()                      # 新建分支并检出到此分支： gb 分支名
 {
