@@ -223,7 +223,7 @@ cpseenunder()
 }
 
 alias md='mkdir'
-# alias g='grep'
+alias g='grep'
 alias lk='ln -s'
 # lk <原身路径：可是文件、文件夹> <链接路径与名称>
 # 创建软连接
