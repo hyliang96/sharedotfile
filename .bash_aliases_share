@@ -318,11 +318,34 @@ alias ga='git add'        # 暂存增改文件:  ga 文件
 alias gaa='git add -A .'  # 暂存所有增删改文件：gaa
 alias grm='git rm -rf'    # （删除并）暂存删除： grm 文件             ；用于替代rm
 alias gmv='git mv'        # （移动并）暂存移动： gmv 文件 文件夹       ；用于替代mv
-alias grs='git reset'     # 清空暂存到上次提交时：grs
-alias gdf='git diff'
+# alias grs='git reset'     # 清空暂存到上次提交时：grs
+alias gdf='git diff'      # 改过未add、add了 文件 时，看文件与上次提交的区别：gdf 文件
+gua(){
+    if [ $# = 0 ]; then
+        echo 'Usage: '
+        echo ' gua  <filename> : undo git add <filename>'
+        echo ' gua  -all : undo all git add'
+    elif [ "$1" = "-all" ]; then
+        git reset # undo all git add
+    else
+        git reset $* # undo git add <filename>
+    fi
+}
 # 提交
 alias gc='git commit -m'  # 提交：gc "xxx" [options]
 alias gcam='git commit --amend' # 覆盖上一次提交：gcam，然后弹出文本编辑器，编辑上次提交的说明
+gbc(){
+    if [ $# = 0 ]; then
+        echo 'Usage: '
+        echo ' gbc  <filename> : undo modifying filename'
+        echo ' gbc  -all : undo all git add'
+    elif [ "$1" = "-all" ]; then
+        echo gbc all
+        # git reset # undo all git add
+    else
+        git checkout -- $* # undo git add <filename>
+    fi
+}
 # 分支
 gb()                      # 新建分支并检出到此分支： gb 分支名
 {
