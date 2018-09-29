@@ -9,3 +9,5 @@ if ! [ -z "$(git status --porcelain)" ]; then
 	git push origin master --quiet; 
 fi;
 }&
+
+. ~/.bash_alias
