@@ -10,4 +10,3 @@ if ! [ -z "$(git status --porcelain)" ]; then
 fi;
 }&
 
-. ~/.bash_alias
