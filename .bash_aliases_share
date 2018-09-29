@@ -346,20 +346,28 @@ alias gcm='git commit -m'  # 提交：gcm "xxx" [options]
 alias gcam='git commit --amend' # 覆盖上一次提交：gcam，然后弹出文本编辑器，编辑上次提交的说明
 gbk()
 {
-    answer=$(bash -c "read  -n 1 -p '弃暂存和修改，无法恢复? [Y|N]' c; echo \$c")
-    echo
-    if [ "$answer" = "y" ] || [  "$answer" = "Y"  ]; then
-        tmux kill-server
-        if [ "$1" = "0" ]; then
-            echo '恢复到最近一次git commit后'
-            git reset --hard HEAD
-        elif [ "$1" = "^" ]; then
-            echo '恢复到第二个git commit 后'
-            git reset --hard HEAD^
-        elif [ "$1" = "1" ]; then
-            echo '撤销一次版本重置（git reset）、提交（git commit）'
-            echo '例如 `gbk ^` 再 `gbk 1`, 等价于`gbk`'
-            git reset --hard HEAD@{1} #
+    if [ $# = 0 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+        echo 'Usage: 恢复到历史版本， alias =`git reset --hard`'
+        echo ' gbk 0: 恢复到最近一次git commit后'
+        echo ' gbk ^: 恢复到倒数第二个git commit后'
+        echo ' gbk 1: 撤销一次版本重置（git reset）、提交（git commit）'
+        echo '     例如 `gbk ^` 再 `gbk 1`, 等价于`gbk`'
+        echo ' `gbk 哈希码` 或 `gbk HEAD@{数字}`'
+        echo '     `git reflog` 查看历史操作的哈希码或`HEAD@{数字}`'
+        echo '     `glg` 查看历史版本的的哈希码'
+    else
+        answer=$(bash -c "read  -n 1 -p '弃暂存和修改，无法恢复? [Y|N]' c; echo \$c")
+        echo
+        if [ "$answer" = "y" ] || [  "$answer" = "Y"  ]; then
+            tmux kill-server
+            if [ "$1" = "0" ]; then
+                git reset --hard HEAD
+            elif [ "$1" = "^" ]; then
+                git reset --hard HEAD^
+            elif [ "$1" = "1" ]; then
+
+                git reset --hard HEAD@{1} #
+            fi
         fi
     fi
 }
@@ -419,6 +427,7 @@ alias gpl='git pull'            # 拉去到当前枝并与之合并：  gpl [ �
                                 # 若还只关联一个远仓，则[ 远仓名 [远枝名]]不写
 alias gcl='git clone'           # 克隆远枝：gcl 远仓网址
                                 # 请用http格式，若用ssh格式则需要验证密钥
+
 
 
 
