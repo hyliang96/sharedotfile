@@ -336,43 +336,73 @@ gua(){
         echo ' gua  <filename> [ <filename> [ <filename> ...]]'
         echo ' gua  -all : 撤销所有暂存'
     elif [ "$1" = "-all" ]; then
-        git reset
+        git reset HEAD
     else
-        git reset $*
+        git reset HEAD $*
     fi
 }
 # 提交
 alias gcm='git commit -m'  # 提交：gcm "xxx" [options]
 alias gcam='git commit --amend' # 覆盖上一次提交：gcam，然后弹出文本编辑器，编辑上次提交的说明
-gbk()
+guc() # 直接回到历史版本
 {
     if [ $# = 0 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
         echo 'Usage: 恢复到历史版本， alias =`git reset --hard`'
-        echo ' gbk 0: 恢复到最近一次git commit后'
-        echo ' gbk ^: 恢复到倒数第二个git commit后'
-        echo ' gbk 1: 撤销一次版本重置（git reset）、提交（git commit）'
-        echo '     例如 `gbk ^` 再 `gbk 1`, 等价于`gbk`'
-        echo ' `gbk 哈希码` 或 `gbk HEAD@{数字}`'
-        echo '     `git reflog` 查看历史操作的哈希码或`HEAD@{数字}`'
-        echo '     `glg` 查看历史版本的的哈希码'
+        echo ' guc 0: 恢复到最近一次git commit后'
+        echo ' guc ^: 恢复到父版本'
+        echo ' guc ^n: 恢复到n父版本'
+        echo ' guc -n: 恢复到HEAD@{n}'
+        echo '     `ghs`: 查看所有版本操作的哈希码和HEAD@{n}，如`git commit/reset/revert`'
+        echo '            其中 HEAD@{n}: 依时间顺序，倒数第n个版本（当前版本为第0）'
+        echo '            例如 `guc ^` 再 `guc -1`, 等价于`guc 0`'
+        echo ' `guc 哈希码/HEAD@{n}/HEAD/HEAD^/HEAD~n`'
+        echo '     `glg`: 查看历史版本的的哈希码'
     else
-        answer=$(bash -c "read  -n 1 -p '弃暂存和修改，无法恢复? [Y|N]' c; echo \$c")
+        answer=$(bash -c "read  -n 1 -p '请先git commit再reset，不然抛弃暂存和修改 无法恢复。是否继续reset [Y|N]' c; echo \$c")
         echo
         if [ "$answer" = "y" ] || [  "$answer" = "Y"  ]; then
-            tmux kill-server
+            target_version=$1
             if [ "$1" = "0" ]; then
+                echo git reset --hard HEAD
                 git reset --hard HEAD
             elif [ "$1" = "^" ]; then
+                echo git reset --hard HEAD^
                 git reset --hard HEAD^
-            elif [ "$1" = "1" ]; then
-
-                git reset --hard HEAD@{1} #
+            elif [ "${target_version:0:1}" = "^" ]; then
+                n=${target_version:1:${#target_version}}
+                echo git reset --hard HEAD~$n
+                git reset --hard HEAD~$n
+            elif [ "${target_version:0:1}" = "-" ]; then
+                n=${target_version:1:${#target_version}}
+                echo git reset --hard HEAD@{$n}
+                git reset --hard HEAD@{$n}
+            else
+                echo git reset --hard $1
+                git reset --hard $1
             fi
         fi
     fi
 }
-alias gbkold='git reset --hard HEAD^' # 放弃未commit的暂存和修改，恢复到倒数第二次commit后
-alias gubk2='' #恢复到
+grcm() # 反向提交到某个版本
+{
+    if [ $# = 0 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+        echo 'Usage: 反向提交返回历史版本， alias = `git revert`'
+        echo ' grcm ^: 到上一版本'
+        echo ' grcm ^n: 到前n版本'
+        echo ' grcm <版本哈希/HEAD^/HEAD~n>: 反向提交若干次，回到上此<版本>，它必需是HEAD的祖宗版本'
+        echo ' 若有暂存、修改，则无法执行，需先git commit 或 抛弃暂存、修改（`guc 0`）'
+    else
+        target_version=$1
+        if [ "${target_version}" = "^" ]; then
+            git revert HEAD^..HEAD      # 反向提交一次，回到上一版本
+        elif [ "${target_version:0:1}" = "^" ]; then
+            n=${target_version:1:${#target_version}}
+            git revert HEAD~${n}..HEAD      # 反向提交一次，回到上一版本
+        else
+            git revert $1..HEAD  # 反向提交若干次，回到$1版本，$1为版本哈希/HEAD^/HEAD~n
+        fi
+    fi
+}
 # 分支
 gb()                      # 新建分支并检出到此分支： gb 分支名
 {
@@ -380,7 +410,7 @@ gb()                      # 新建分支并检出到此分支： gb 分支名
 }
 alias gbrm='git branch -d' # 删除分支：gbrm 分支名
 alias gbls='git branch -avv' # 列出所有本地枝，及其关联的远枝： gbls
-alias gch='git checkout'    # 切换分支：gch 分支名/历史提交编号
+alias gch='git checkout'    # 切换分支：gch 分支名/历史提交编号/HEAD^/HEAD/HEAD~n/HEAD@{n}, 要先git commit一次才能gch
 alias gmg='git merge'       # 将其与当前枝合并：gmg 待合并分支
 # 历史
 alias glg='git log --graph --decorate --oneline --all'  #列出提交历史图谱，含远仓、本仓
