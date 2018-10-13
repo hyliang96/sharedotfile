@@ -252,6 +252,11 @@ alias jy='dtrx'
 #     jy 压缩文件的路径（可以多个）
 #     则自动将其解压到同名文件夹
 
+
+# -------------- 删除mac特有隐藏文件 --------------
+# 删除 .DS_store 和 ._* 文件
+alias macdot_clean='find . -type f -name "._*" -delete -o -name ".DS_store" -delete'
+
 # ---------------- alias to conda --------------
 alias act='source activate'
 alias dea='source deactivate'
@@ -348,7 +353,7 @@ gua(){
 }
 # 提交
 alias gcm='git commit -m'  # 提交：gcm "xxx" [options]
-alias gcam='git commit --amend' # 覆盖上一次提交：gcam，然后弹出文本编辑器，编辑上次提交的说明
+alias gcma='git commit --amend' # 先add，再覆盖上一次提交：gcma，然后弹出文本编辑器，编辑上次提交的说明
 guc() # 直接回到历史版本
 {
     if [ $# = 0 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
