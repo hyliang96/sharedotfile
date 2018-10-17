@@ -179,6 +179,21 @@ setopt HIST_VERIFY # Don't execute immediately upon history expansion.
 
 
 
+# ------------- 命令行使用Coreutils 配色方案 -------------
+# 采用Coreutils的gdircolor配色，修改~/.dir_colors(自定义配色)
+# 以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）
+# 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...
+if brew list | grep coreutils > /dev/null ; then
+	echo Coreutils
+	# 在mac系统下安装了brew，并安装了coreutils，本句判断才为true
+	PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+	alias ls='ls -F --show-control-chars --color=auto'
+	eval `gdircolors -b $HOME/.dir_colors`
+fi
+
+LS_COLORS=`echo $LS_COLORS | sed -E 's/ow=[0-9;]+://g'`:'ow=1;34;7:' ; export LS_COLORS
+
+
 # -------------------- alias to ls ---------------------
 # 显(xxx)隐(.xxx) 文件(xxx)文件夹(xxx/) 用户名 大小 创建日期 大小用GMk格式
 alias ll='ls -alFGh'
@@ -195,19 +210,6 @@ alias grep='grep --color'
 alias egrep='egrep --color'
 alias fgrep='fgrep --color'
 
-# ------------- 命令行使用Coreutils 配色方案 -------------
-# 采用Coreutils的gdircolor配色，修改~/.dir_colors(自定义配色)
-# 以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）
-# 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...
-if brew list | grep coreutils > /dev/null ; then
-	echo Coreutils
-	# 在mac系统下安装了brew，并安装了coreutils，本句判断才为true
-	PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-	alias ls='ls -F --show-control-chars --color=auto'
-	eval `gdircolors -b $HOME/.dir_colors`
-fi
-
-LS_COLORS=`echo $LS_COLORS | sed -E 's/ow=[0-9;]+://g'`:'ow=1;34;7:' ; export LS_COLORS
 
 
 # ignore complition
