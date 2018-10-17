@@ -187,7 +187,7 @@ if brew list | grep coreutils > /dev/null ; then
 	echo Coreutils
 	# 在mac系统下安装了brew，并安装了coreutils，本句判断才为true
 	PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-	alias ls='ls -F --show-control-chars --color=auto'
+	alias ls='ls -F -G --show-control-chars --color=auto'
 	eval `gdircolors -b $HOME/.dir_colors`
 fi
 
@@ -201,8 +201,8 @@ alias ll='ls -alFGh'
 alias la='ls -AG'
 # 显 文件(xxx)文件夹(xxx/)
 alias l='ls -CFG'
-# 上色 文件(白)文件夹(紫)
-alias ls='ls -G'
+# # 上色 文件(白)文件夹(紫)
+# alias ls='ls -G'
 
 # -------------------- alias to grep -------------------
 # 上色
