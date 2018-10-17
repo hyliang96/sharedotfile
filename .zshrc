@@ -180,7 +180,8 @@ setopt HIST_VERIFY # Don't execute immediately upon history expansion.
 # ignore complition
 zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.pdf|*.exe|*.dll'
 zstyle ':completion:*:*sh:*:' tag-order files
-
+# Zsh to use the same colors as ls
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # iterm2_shell_integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
