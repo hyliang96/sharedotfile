@@ -185,7 +185,6 @@ setopt HIST_VERIFY # Don't execute immediately upon history expansion.
 # 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...
 if [ -x "$(command -v brew)" ] ; then
 	if brew list | grep coreutils > /dev/null ; then
-		echo Coreutils
 		# 在mac系统下安装了brew，并安装了coreutils，本句判断才为true
 		PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 		alias ls='ls -F -G --show-control-chars --color=auto'
