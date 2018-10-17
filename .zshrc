@@ -203,7 +203,7 @@ if brew list | grep coreutils > /dev/null ; then
 	PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 	alias ls='ls -F --show-control-chars --color=auto'
 	eval `gdircolors -b $HOME/.dir_colors`
-    LS_COLORS=$LS_COLORS:'ow=1;34;7:' ; export LS_COLORS
+    LS_COLORS=(echo $LS_COLORS | sed -E 's/ow=[0-9;]+://g'):'ow=1;34;7:' ; export LS_COLORS
 fi
 
 
