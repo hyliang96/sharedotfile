@@ -200,6 +200,7 @@ alias fgrep='fgrep --color'
 # 以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）
 # 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...
 if brew list | grep coreutils > /dev/null ; then
+	echo Coreutils
 	# 在mac系统下安装了brew，并安装了coreutils，本句判断才为true
 	PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 	alias ls='ls -F --show-control-chars --color=auto'
