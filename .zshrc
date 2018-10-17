@@ -183,7 +183,7 @@ setopt HIST_VERIFY # Don't execute immediately upon history expansion.
 # 采用Coreutils的gdircolor配色，修改~/.dir_colors(自定义配色)
 # 以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）
 # 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...
-if [ -n `which brew` ]; then
+if [ -x "$(command -v brew)" ] ; then
 	if brew list | grep coreutils > /dev/null ; then
 		echo Coreutils
 		# 在mac系统下安装了brew，并安装了coreutils，本句判断才为true
