@@ -176,10 +176,13 @@ setopt HIST_VERIFY # Don't execute immediately upon history expansion.
 # source function.sh if it exists
 [ -f "$HOME/.local/etc/function.sh" ] && . "$HOME/.local/etc/function.sh"
 
+# ignore complition
+zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.pdf|*.exe|*.dll'
+zstyle ':completion:*:*sh:*:' tag-order files
 
 
-
-# ------------- 命令行使用Coreutils 配色方案 -------------
+# ------------- 配色 -------------
+# 终端使用 Coreutils 配色方案
 # 采用Coreutils的gdircolor配色，修改~/.dir_colors(自定义配色)
 # 以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）
 # 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...
@@ -192,39 +195,26 @@ if [ -x "$(command -v brew)" ] ; then
 	fi
 fi
 
+# 将777权限的文件在ls时，显示为文灰底紫
 LS_COLORS=`echo $LS_COLORS | sed -E 's/ow=[0-9;]+://g'`:'ow=1;34;7:' ; export LS_COLORS
 
 
-
-
-# -------------------- alias to grep -------------------
-# 上色
+# grep 上色
 alias grep='grep --color'
 alias egrep='egrep --color'
 alias fgrep='fgrep --color'
 
-
-
-# ignore complition
-zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.pdf|*.exe|*.dll'
-zstyle ':completion:*:*sh:*:' tag-order files
-# Zsh to use the same colors as ls
+# 使得zsh的补全配色与ls一致
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
+
+# ------------- 其他 -------------
 # iterm2_shell_integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
 # alias
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
-
-# if [ -z "$_loaded_bash_aliases" ]; then
-#	echo no _loaded_bash_aliases
-#	[ -f ~/.bash_aliases ] && . ~/.bash_aliases
-#else
-#	echo _loaded_bash_aliases=$_loaded_bash_aliases
-#	unset _loaded_bash_aliases
-# fi
 
 
 
