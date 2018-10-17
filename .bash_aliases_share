@@ -356,18 +356,18 @@ gua(){
 # 提交
 alias gcm='git commit -m'  # 提交：gcm "xxx" [options]
 alias gcma='git commit --amend' # 先add，再覆盖上一次提交：gcma，然后弹出文本编辑器，编辑上次提交的说明
-guc() # 直接回到历史版本
+gucm() # 直接回到历史版本
 {
     if [ $# = 0 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
         echo 'Usage: 恢复到历史版本， alias =`git reset --hard`'
-        echo ' guc 0: 恢复到最近一次git commit后'
-        echo ' guc ^: 恢复到父版本'
-        echo ' guc ^n: 恢复到n父版本'
-        echo ' guc -n: 恢复到HEAD@{n}'
+        echo ' gucm 0: 恢复到最近一次git commit后'
+        echo ' gucm ^: 恢复到父版本'
+        echo ' gucm ^n: 恢复到n父版本'
+        echo ' gucm -n: 恢复到HEAD@{n}'
         echo '     `ghs`: 查看所有版本操作的哈希码和HEAD@{n}，如`git commit/reset/revert`'
         echo '            其中 HEAD@{n}: 依时间顺序，倒数第n个版本（当前版本为第0）'
-        echo '            例如 `guc ^` 再 `guc -1`, 等价于`guc 0`'
-        echo ' `guc 哈希码/HEAD@{n}/HEAD/HEAD^/HEAD~n`'
+        echo '            例如 `gucm ^` 再 `gucm -1`, 等价于`gucm 0`'
+        echo ' `gucm 哈希码/HEAD@{n}/HEAD/HEAD^/HEAD~n`'
         echo '     `glg`: 查看历史版本的的哈希码'
     else
         answer=$(bash -c "read  -n 1 -p '请先git commit再reset，不然抛弃暂存和修改 无法恢复。是否继续reset [Y|N]' c; echo \$c")
@@ -402,7 +402,7 @@ grcm() # 反向提交到某个版本
         echo ' grcm ^: 到上一版本'
         echo ' grcm ^n: 到前n版本'
         echo ' grcm <版本哈希/HEAD^/HEAD~n>: 反向提交若干次，回到上此<版本>，它必需是HEAD的祖宗版本'
-        echo ' 若有暂存、修改，则无法执行，需先git commit 或 抛弃暂存、修改（`guc 0`）'
+        echo ' 若有暂存、修改，则无法执行，需先git commit 或 抛弃暂存、修改（`gucm 0`）'
     else
         target_version=$1
         if [ "${target_version}" = "^" ]; then

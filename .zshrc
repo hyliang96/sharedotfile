@@ -182,6 +182,9 @@ zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.pdf|*.exe|*.dl
 zstyle ':completion:*:*sh:*:' tag-order files
 
 
+# iterm2_shell_integration
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 
 # alias
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
@@ -196,5 +199,4 @@ zstyle ':completion:*:*sh:*:' tag-order files
 
 
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
