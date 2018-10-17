@@ -196,15 +196,7 @@ fi
 LS_COLORS=`echo $LS_COLORS | sed -E 's/ow=[0-9;]+://g'`:'ow=1;34;7:' ; export LS_COLORS
 
 
-# -------------------- alias to ls ---------------------
-# 显(xxx)隐(.xxx) 文件(xxx)文件夹(xxx/) 用户名 大小 创建日期 大小用GMk格式
-alias ll='ls -alFGh'
-# 显(xxx)隐(.xxx) 文件与文件夹不区分(xxx)
-alias la='ls -AG'
-# 显 文件(xxx)文件夹(xxx/)
-alias l='ls -CFG'
-# # 上色 文件(白)文件夹(紫)
-# alias ls='ls -G'
+
 
 # -------------------- alias to grep -------------------
 # 上色
