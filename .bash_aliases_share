@@ -33,24 +33,26 @@ sys()
     echo -n "CPU: "; cpu-v
 }
 
+
 # 总核数 = 物理CPU个数 X 每颗物理CPU的核数
 # 逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数
-alias pcpu-n='cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l' # 物理cpu数
-cpu-nh()    # 每个物理CPU的核数
+alias pcpu_n='cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l' # 物理cpu数
+cpu_nh()    # 每个物理CPU的核数
 {
     echo ${$(cat /proc/cpuinfo| grep "cpu cores"| uniq)//[^0-9]/}
 }
-alias lcpu-n='cat /proc/cpuinfo| grep "processor"| wc -l'   # 逻辑cpu数
-cxc-n() # 超线程数目
+alias lcpu_n='cat /proc/cpuinfo| grep "processor"| wc -l'   # 逻辑cpu数
+
+cxc_n() # 超线程数目
 {
-    echo $((10#$(lcpu-n)/10#$(pcpu-n)/10#$(cpu-nh)))
+    echo $((10#$(lcpu_n)/10#$(pcpu_n)/10#$(cpu_nh)))
 }
-cpun()
+cpu_n()
 {
-    echo -n "物理CPU数："; pcpu-n
-    echo -n "每CPU核数：";cpu-nh
-    echo -n "逻辑CPU数：";lcpu-n
-    echo -n "超线程数："; cxc-n
+    echo -n "物理CPU数："; pcpu_n
+    echo -n "每CPU核数：";cpu_nh
+    echo -n "逻辑CPU数：";lcpu_n
+    echo -n "超线程数："; cxc_n
 }
 
 
@@ -143,8 +145,8 @@ alias vvim='sub ~/.vimrc'           # vim 免source，重新开vim即生效
 alias vgit='sub ~/.gitconfig'
 alias vssh='sub ~/.ssh/config'
 # update dotfiles
-alias dotpl='~/.sharedotfile/pulldotfile.sh'
-alias dotps='~/.sharedotfile/pushdotfile.sh'
+alias dotpl='$SHELL ~/.sharedotfile/pulldotfile.sh'
+alias dotps='$SHELL ~/.sharedotfile/pushdotfile.sh'
 
 # ---------------- 环境显示 -----------------------
 # 显示路径，换行分隔，例如 `showpa PATH`， `showpa <任何一环境变量>`
@@ -174,8 +176,8 @@ alias cp="cp -r"
 alias scp="scp -r"
 
 # `cp 目录/.`   拷贝一个目录下所有文件，目录自身不拷贝，拷隐藏文件
-# cpunder 一个或多个源目录 目标目录
-cpunder()
+# cpu_nder 一个或多个源目录 目标目录
+cpu_nder()
 {
     sourcepaths=${*:1:$#-1}
     targetpath=${*:$#:1}
@@ -477,6 +479,7 @@ gmed()  # 修改提交信息：  gmed <版本id>
     commitid=$1
     GIT_SEQUENCE_EDITOR="sed -i -re 's/^pick ${commitid}/r ${commitid}/'" git rebase -i ${commitid}^
 }
+
 
 
 
