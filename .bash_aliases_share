@@ -469,8 +469,14 @@ alias gpl='git pull'            # 拉去到当前枝并与之合并：  gpl [ �
 alias gcl='git clone'           # 克隆远枝：gcl 远仓网址
                                 # 请用http格式，若用ssh格式则需要验证密钥
 
-
-
+gmed()  # 修改提交信息：  gmed <版本id>
+#    只接收一个版本id
+#    只接收版本hash，不接受HEAD, HEAD^, HEAD@{n}
+#    不能是第一个版本
+{
+    commitid=$1
+    GIT_SEQUENCE_EDITOR="sed -i -re 's/^pick ${commitid}/r ${commitid}/'" git rebase -i ${commitid}^
+}
 
 
 
