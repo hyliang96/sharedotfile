@@ -177,6 +177,39 @@ setopt HIST_VERIFY # Don't execute immediately upon history expansion.
 [ -f "$HOME/.local/etc/function.sh" ] && . "$HOME/.local/etc/function.sh"
 
 
+
+
+# -------------------- alias to ls ---------------------
+# 显(xxx)隐(.xxx) 文件(xxx)文件夹(xxx/) 用户名 大小 创建日期 大小用GMk格式
+alias ll='ls -alFGh'
+# 显(xxx)隐(.xxx) 文件与文件夹不区分(xxx)
+alias la='ls -AG'
+# 显 文件(xxx)文件夹(xxx/)
+alias l='ls -CFG'
+# 上色 文件(白)文件夹(紫)
+alias ls='ls -G'
+
+# -------------------- alias to grep -------------------
+# 上色
+alias grep='grep --color'
+alias egrep='egrep --color'
+alias fgrep='fgrep --color'
+
+# ------------- 命令行使用Coreutils 配色方案 -------------
+# 采用Coreutils的gdircolor配色，修改~/.dir_colors(自定义配色)
+# 以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）
+# 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...
+if brew list | grep coreutils > /dev/null ; then
+	PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+	alias ls='ls -F --show-control-chars --color=auto'
+	eval `gdircolors -b $HOME/.dir_colors`
+    LS_COLORS=$LS_COLORS:'ow=1;34;7:' ; export LS_COLORS
+fi
+
+
+
+
+
 # ignore complition
 zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.pdf|*.exe|*.dll'
 zstyle ':completion:*:*sh:*:' tag-order files
