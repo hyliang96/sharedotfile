@@ -258,6 +258,37 @@ c()
 alias kzx='chmod +x'  # kzx 文件名： 设为可执行
 alias bkzx='chmod -x' # bkzx 文件名：设为不可执行
 
+<<<<<<< HEAD
+=======
+# 7z压缩
+# 用法
+#    jy7z xxx.7z(".7z"可省略) 一到若干个文件或文件夹
+# 会把文件夹下的所有隐藏和可见文件都压缩到xxx.7z
+ys7z()
+{
+    file7z=$1; shift 1
+    filehead=`echo $file7z | sed -E 's/.7z$//g'`
+    things_to_be_compressed_and_other_args=$*
+    eval "7z a ${filehead}.7z ${things_to_be_compressed_and_other_args}"
+}
+
+jy7z()
+# 用法
+#    jy7z xxx.7z 目标目录(缺省为.)
+# 解压到`目标目录/xxx`
+{
+    file7z=$1; shift 1
+    if [ $# -ne 0 ]; then
+        target_jieya_path=$1
+    else
+        target_jieya_path=.
+    fi
+    filehead=`echo $file7z | sed -E 's/.7z$//g'`
+    # `7z x`一次只能解压一个文件
+    eval "7z x ${file7z} -o${target_jieya_path}/${filehead}"
+}
+
+>>>>>>> c10f65aa712ddd14a31e72dca272967d9284c7a2
 # 通用解压
 alias jy='dtrx'
 # 用法：
@@ -268,7 +299,7 @@ alias jy='dtrx'
 
 # -------------- 删除mac特有隐藏文件 --------------
 # 删除 .DS_store 和 ._* 文件
-alias macdot_clean='find . -type f -name "._*" -delete -o -name ".DS_store" -delete'
+alias macdot_clean='find . \( -type f \( -name "._*" \) -o \( -name ".DS_Store" \) \) -delete'
 
 # ---------------- alias to conda --------------
 alias act='source activate'
