@@ -257,6 +257,9 @@ c()
 # 授权bash文件可执行
 alias kzx='chmod +x'  # kzx 文件名： 设为可执行
 alias bkzx='chmod -x' # bkzx 文件名：设为不可执行
+
+# 通用压缩
+alias ys='zip -r '
 # 通用解压
 alias jy='dtrx'
 # 用法：
