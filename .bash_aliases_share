@@ -258,8 +258,7 @@ c()
 alias kzx='chmod +x'  # kzx 文件名： 设为可执行
 alias bkzx='chmod -x' # bkzx 文件名：设为不可执行
 
-<<<<<<< HEAD
-=======
+
 # 7z压缩
 # 用法
 #    jy7z xxx.7z(".7z"可省略) 一到若干个文件或文件夹
@@ -288,7 +287,6 @@ jy7z()
     eval "7z x ${file7z} -o${target_jieya_path}/${filehead}"
 }
 
->>>>>>> c10f65aa712ddd14a31e72dca272967d9284c7a2
 # 通用解压
 alias jy='dtrx'
 # 用法：
