@@ -207,7 +207,10 @@ alias fgrep='fgrep --color'
 # 使得zsh的补全配色与ls一致
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-
+# 没有找到文件（夹），仍然继续执行
+# 如 rm -rf 一个文件夹/{*,.*}
+# 即使没有 .* 文件，也会把 * 文件删了
+setopt no_nomatch
 # ------------- 其他 -------------
 # iterm2_shell_integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

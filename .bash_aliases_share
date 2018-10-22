@@ -203,12 +203,6 @@ cpseenunder()
     done
 }
 
-rmallunder()
-{
-    rm -rf $1/*
-    rm -rf $1/.*
-}
-
 # ---------------- alias sys command ----------------
 # # some more ls aliases
 # alias ll='ls -alFh'
@@ -243,7 +237,12 @@ rmunder()
 {
     for x in $*
     do
-        rm $x/{*,.[!.]*} -rf
+        if [ -n "$ZSH_VERSION" ]; then  # zsh 下
+            rm $x/{*,.*} -rf
+        else
+        # elif [ -n "$BASH_VERSION" ]; then # bash 下
+            rm $x/{*,.[!.]*} -rf
+        fi
     done
 }
 
