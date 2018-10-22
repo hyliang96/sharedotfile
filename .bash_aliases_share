@@ -201,18 +201,14 @@ cpseenunder()
     do
         cp $x/* $targetpath
     done
-
 }
 
-allunder()
+rmallunder()
 {
-    dirpath=$*
-    filepaths=()
-    for file in $(ls -A1 $dirpath); do
-        echo $file
-        filepaths=(${filepaths[*]} ${dirpath}/$file)
-    done
+    rm -rf $1/*
+    rm -rf $1/.*
 }
+
 # ---------------- alias sys command ----------------
 # # some more ls aliases
 # alias ll='ls -alFh'
