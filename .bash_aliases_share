@@ -206,8 +206,9 @@ cpseenunder()
 
 allunder()
 {
-    dirpath=$1
-    for i in ${dirpath[@]}; do
+    dirpath=$*
+    subfiles=`ls -A1 $dirpath`
+    for i in $subfiles; do
         echo $i
     done
 }
