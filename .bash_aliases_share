@@ -207,9 +207,10 @@ cpseenunder()
 allunder()
 {
     dirpath=$*
-    subfiles=`ls -A1 $dirpath`
-    for i in $subfiles; do
-        echo $i
+    filepaths=()
+    for file in $(ls -A1 $dirpath); do
+        echo $file
+        filepaths=(${filepaths[*]} ${dirpath}/$file)
     done
 }
 # ---------------- alias sys command ----------------
