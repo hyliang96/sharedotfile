@@ -204,6 +204,13 @@ cpseenunder()
 
 }
 
+allunder()
+{
+    dirpath=$1
+    for i in ${dirpath[@]}; do
+        echo $i
+    done
+}
 # ---------------- alias sys command ----------------
 # # some more ls aliases
 # alias ll='ls -alFh'
