@@ -133,6 +133,7 @@ sub(){
 
 # --------------- alias dotfile ----------------------
 # bash
+alias vbe='sub ~/.bash_env';        alias sbe='source ~/.bash_env'
 alias vbp='sub ~/.profile';         alias sbp='source ~/.profile'
 alias vbr='sub ~/.bashrc';          alias sbr='source ~/.bashrc'
 alias vba='sub ~/.bash_aliases';    alias vbas='sub ~/.bash_aliases_share';    alias sba='. ~/.bash_aliases';
@@ -146,7 +147,7 @@ alias vzo='sub ~/.zlogout';         alias szo='.   ~/.zlogout'
 alias vtmux='sub ~/.tmux.conf';     alias stmux='tmux source-file ~/.tmux.conf'
 alias vvim='sub ~/.vimrc'           # vim 免source，重新开vim即生效
 alias vgit='sub ~/.gitconfig'
-alias vssh='sub ~/.ssh/config'
+alias vssh='sub ~/.ssh/config';     alias sssh='cp -r ~/.ssh /home/${USER}/.ssh'
 # update dotfiles
 alias dotpl='$SHELL ~/.sharedotfile/pulldotfile.sh'
 alias dotps='$SHELL ~/.sharedotfile/pushdotfile.sh'
