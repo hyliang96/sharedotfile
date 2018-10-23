@@ -142,7 +142,7 @@ alias vbo='sub ~/.bash_logout';     alias sbo='source ~/.bash_logout'
 alias vze='sub ~/.zshenv';          alias sze='. ~/.zshenv'
 alias vzp='sub ~/.zprofile';        alias szp='. ~/.zprofile'
 alias vzr='sub ~/.zshrc';           alias szr='. ~/.zshrc'
-alias vzo='sub ~/.zlogout';         alias szo='.   ~/.zlogout'
+alias vzo='sub ~/.zlogout';         alias szo='. ~/.zlogout'
 # others
 alias vtmux='sub ~/.tmux.conf';     alias stmux='tmux source-file ~/.tmux.conf'
 alias vvim='sub ~/.vimrc'           # vim 免source，重新开vim即生效
