@@ -302,6 +302,8 @@ alias jy='dtrx'
 #     jy 压缩文件的路径（可以多个）
 #     则自动将其解压到同名文件夹
 
+# 更换默认shell
+changeshell(){ which $1 && chsh -s `which $1` }
 
 # -------------- 删除mac特有隐藏文件 --------------
 # 删除 .DS_store 和 ._* 文件
