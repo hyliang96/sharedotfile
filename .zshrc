@@ -213,7 +213,10 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 setopt no_nomatch
 
 
+# ctrl+u: 删除光标左侧
 bindkey \^U backward-kill-line
+# kill-whole-line  # 删除整行
+
 # ------------- 其他 -------------
 # iterm2_shell_integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
