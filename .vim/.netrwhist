@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/Users/mac'
 let g:netrw_dirhist_2='/Users/mac/.bash_sessions'
 let g:netrw_dirhist_3='/Users/mac'
@@ -7,3 +7,4 @@ let g:netrw_dirhist_4='/home/haoyu/.pycharm_helpers'
 let g:netrw_dirhist_5='/home/haoyu/mfs'
 let g:netrw_dirhist_6='/mfs/haoyu/server_conf/ENV/shareENV/CONF'
 let g:netrw_dirhist_7='/home/haoyu/mfs/project/defense/attack_new/log'
+let g:netrw_dirhist_8='/home/haoyu/mfs/project/defense/Denoise-tinyImageNet/Exps/resnet/results/li_resnet34_attack_acc692_csy_magn1'
