@@ -147,7 +147,6 @@ alias vzo='sub ~/.zlogout';         alias szo='. ~/.zlogout'
 alias vtmux='sub ~/.tmux.conf';     alias stmux='tmux source-file ~/.tmux.conf'
 alias vvim='sub ~/.vimrc'           # vim 免source，重新开vim即生效
 alias vgit='sub ~/.gitconfig'
-alias vssh='sub ~/.ssh/config';
 # update dotfiles
 alias dotpl='$SHELL ~/.sharedotfile/pulldotfile.sh'
 alias dotps='$SHELL ~/.sharedotfile/pushdotfile.sh'
@@ -171,6 +170,9 @@ rmpa()
     eval "export $1=$newpath"
 }
 
+# ssh
+alias vssh='sub ~/.ssh/config'
+alias sshkey='ssh-copy-id'     # 发送公钥
 
 
 # ---------------- alias cp、scp ----------------
