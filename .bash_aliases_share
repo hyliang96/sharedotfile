@@ -148,6 +148,7 @@ alias vtmux='sub ~/.tmux.conf';     alias stmux='tmux source-file ~/.tmux.conf'
 alias vvim='sub ~/.vimrc'           # vim 免source，重新开vim即生效
 alias vgit='sub ~/.gitconfig'
 alias vssh='sub ~/.ssh/config';
+alias vhost='vim /etc/hosts' # 系统文件，个人账号用sub看不了
 # update dotfiles
 alias dotpl='$SHELL ~/.sharedotfile/pulldotfile.sh'
 alias dotps='$SHELL ~/.sharedotfile/pushdotfile.sh'
