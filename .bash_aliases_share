@@ -382,10 +382,20 @@ tm() {
 
 
 # ------------------- io function -------------------
+getchar()
+{
+    echo begin
+    echo $(bash -c "read -n 1 -s c; echo \$c")
+    echo end
+}
+
 # getline()
 # {
-#     prompt="$*"
-#     echo `bash -c "read  -p \"\$prompt \" c; echo \$c"`
+#     echo begin
+#     x=$1
+#     x=10
+#     # bash -c "read -n 1 -s $1"
+#     echo end
 # }
 
 # getline()
@@ -396,7 +406,13 @@ tm() {
 #     echo $answer
 # }
 
-
+test()
+{
+    echo asdasds asd ads
+    a=$(getchar)
+    # getline a
+    echo $a
+}
 
 # ------------------ git ----------------------------
 # 设置
@@ -405,8 +421,8 @@ guser()
     # echo "what  to do?  [S]how   [C]onfig"
     # read -n 1 c
     # echo $c
-
-    answer=$(bash -c "read  -n 1 -p 'what  to do?  [S]how  [C]onfig  [X]小号  [D]elete' c; echo \$c")
+    echo 'what to do?  [S]how  [C]onfig  [X]小号  [D]elete'
+    answer=$(bash -c "read  -n 1  c; echo \$c")
     echo
     if [ "$answer" = "S" ] || [ "$answer" = "s" ]; then
         echo 'user.name:' `git config user.name`
@@ -526,7 +542,7 @@ alias gbrm='git branch -d' # 删除分支：gbrm 分支名
 alias gbls='git branch -avv' # 列出所有本地枝，及其关联的远枝： gbls
 alias gch='git checkout'    # 切换分支：gch 分支名/历史提交编号/HEAD^/HEAD/HEAD~n/HEAD@{n}, 要先git commit一次才能gch
 alias gmg='git merge'       # 将其与当前枝合并：gmg 待合并分支
-# 历史
+# 历史ssssssss
 alias glg='git log --graph --decorate --oneline --all'  #列出提交历史图谱，含远仓、本仓
 # git log --pretty="%H %an <%ae>"
 alias glgs='glg --simplify-by-decoration'               #列出简化历史图谱
