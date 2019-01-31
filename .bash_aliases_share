@@ -382,34 +382,21 @@ tm() {
 
 
 # ------------------- io function -------------------
+# char=`getchar`
 getchar()
 {
     echo $(bash -c "read -n 1 c; echo \$c")
     echo > /dev/tty
 }
-
-getline()
-{
-    echo begin
-    echo $(read s; echo $s)
-    echo end
-}
-
+# # line=`getline`
 # getline()
 # {
-#     local prompt=$*
-#     # echo $prompt
-#     local answer=$(bash -c "echo \$prompt; read c; echo \$c")
-#     echo $answer
+#     local OLD_IFS=$IFS
+#     IFS=''
+#     echo $(read -e s; echo $s)
+#     IFS=$OLD_IFS
 # }
 
-test()
-{
-    echo asdasds asd ads
-    a=`getchar`
-    # getline a
-    echo $a
-}
 
 # ------------------ git ----------------------------
 # 设置
