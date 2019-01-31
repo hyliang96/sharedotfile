@@ -387,45 +387,42 @@ tm() {
 #     prompt="$*"
 #     echo `bash -c "read  -p \"\$prompt \" c; echo \$c"`
 # }
-get_char()
-{
-    local prompt="asds"
-    local answer=$(bash -c "read  -n 1 -p \"\$prompt\" c; echo \$c")
-    echo $answer
-}
+
+# getline()
+# {
+#     local prompt=$*
+#     # echo $prompt
+#     local answer=$(bash -c "echo \$prompt; read c; echo \$c")
+#     echo $answer
+# }
+
+
 
 # ------------------ git ----------------------------
 # 设置
 guser()
 {
-    answer=$(bash -c "read  -n 1 -p 'what  to do?  [S]how   [C]onfig  ' c; echo \$c")
+    # echo "what  to do?  [S]how   [C]onfig"
+    # read -n 1 c
+    # echo $c
+
+    answer=$(bash -c "read  -n 1 -p 'what  to do?  [S]how  [C]onfig  [X]小号  [D]elete' c; echo \$c")
     echo
-    if [ "$answer" = "S" ]; then
+    if [ "$answer" = "S" ] || [ "$answer" = "s" ]; then
         echo 'user.name:' `git config user.name`
         echo 'user.email:' `git config user.email`
-    else
-        nameuser=$(bash -c "read  -n 1 -p 'user.name:' c; echo \$c")
-        nameemail=$(bash -c "read  -n 1 -p 'user.email:' c; echo \$c")
-        echo nameuser
-        echo nameemail
+    elif [ "$answer" = "C" ] || [ "$answer" = "c" ]; then
+        nameuser=$(bash -c "read  -p 'user.name:' c; echo \$c")
+        nameemail=$(bash -c "read -p 'user.email:' c; echo \$c")
+        git config user.name $nameuser
+        git config user.email $nameemail
+    elif [ "$answer" = "X" ] || [ "$answer" = "x" ]; then
+        git config user.name qqwss
+        git config user.email 3269280750@qq.com
+    elif [ "$answer" = "D" ] || [ "$answer" = "d" ]; then
+        git config --unset  user.name
+        git config --unset user.email
     fi
-    # echo
-    # if [ "$answer" = "y" ] || [  "$answer" = "Y"  ]; then
-    #     tmux kill-server
-    #     echo 'killed'
-    # else
-    #     echo "didn't kill"
-    # fi
-
-    # if [ $# = 0 ]; then
-    #     echo 'user.name:' `git config user.name`
-    #     echo 'user.email:' `git config user.email`
-    # else
-    #     username=''
-    #     useremail=''
-    #     git config user.name username
-    #     git config user.email useremail
-    # fi
 }
 # 初创
 alias gi='git init'       # 创建.git:    cd 项目文件夹; gi
@@ -531,6 +528,7 @@ alias gch='git checkout'    # 切换分支：gch 分支名/历史提交编号/HE
 alias gmg='git merge'       # 将其与当前枝合并：gmg 待合并分支
 # 历史
 alias glg='git log --graph --decorate --oneline --all'  #列出提交历史图谱，含远仓、本仓
+# git log --pretty="%H %an <%ae>"
 alias glgs='glg --simplify-by-decoration'               #列出简化历史图谱
 alias ghs='git reflog'   # 按时间顺序列出 版本重置（git reset）、提交（git commit）
 # 远仓
@@ -541,11 +539,11 @@ gha()  # 关联github上的远程repo
 # 然后 gha [[github用户名（默认hyliang96）] 远仓名（默认origin)] github上repo名
 {
     if [ $# = 1 ]; then
-        user=hyliang96
+        user=`git config user.name`
         name=origin
         repo=$1
     elif [ $# = 2 ]; then
-        user=hyliang96
+        user=`git config user.name`
         name=$1
         repo=$2
         echo 2
