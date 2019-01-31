@@ -382,10 +382,16 @@ tm() {
 
 
 # ------------------- io function -------------------
-getline()
+# getline()
+# {
+#     prompt="$*"
+#     echo `bash -c "read  -p \"\$prompt \" c; echo \$c"`
+# }
+getchar()
 {
     prompt="$*"
-    echo `bash -c "read  -p \"\$prompt \" -s c; echo \$c"`
+    answer=$(bash -c "read  -n 1 -p \"\$prompt\" c; echo \$c")
+    echo $answer
 }
 
 # ------------------ git ----------------------------
