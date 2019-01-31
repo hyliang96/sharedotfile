@@ -384,7 +384,7 @@ tm() {
 # ------------------- io function -------------------
 getline()
 {
-    prompt=$*
+    prompt="$*"
     echo `bash -c "read -p \"\$prompt\" c; echo \$c"`
 }
 
