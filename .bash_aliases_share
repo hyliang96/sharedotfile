@@ -389,8 +389,8 @@ tm() {
 # }
 get_char()
 {
-    prompt="asds"
-    answer=$(bash -c "read  -n 1 -p 'sds wq e d s' c; echo \$c")
+    local prompt="asds"
+    local answer=$(bash -c "read  -n 1 -p \"\$prompt\" c; echo \$c")
     echo $answer
 }
 
