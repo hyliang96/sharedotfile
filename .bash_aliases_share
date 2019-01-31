@@ -390,7 +390,7 @@ tm() {
 getchar()
 {
     prompt="$*"
-    answer=$(bash -c "read  -n 1 -p \"\$prompt\" c; echo \$c")
+    answer=$(bash -c "read  -n 1 -p '$prompt' c; echo \$c")
     echo $answer
 }
 
