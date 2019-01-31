@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 # 服务器、笔记本、WSL 共享的alias配置
 
-
 # ---------------- alias to resource ----------------
 alias nvd='watch -n 0.1 nvidia-smi' # 查GPU使用
 alias gpu='watch -n 0.1 gpustat'    # 查看GPU使用，谁在用
