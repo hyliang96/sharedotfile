@@ -380,7 +380,47 @@ tm() {
     fi
 }
 
+
+# ------------------- io function -------------------
+getline()
+{
+    prompt=$*
+    echo `bash -c "read -p \"\$prompt\" c; echo \$c"`
+}
+
 # ------------------ git ----------------------------
+# 设置
+guser()
+{
+    answer=$(bash -c "read  -n 1 -p 'what  to do?  [S]how   [C]onfig  ' c; echo \$c")
+    echo
+    if [ "$answer" = "S" ]; then
+        echo 'user.name:' `git config user.name`
+        echo 'user.email:' `git config user.email`
+    else
+        nameuser=$(bash -c "read  -n 1 -p 'user.name:' c; echo \$c")
+        nameemail=$(bash -c "read  -n 1 -p 'user.email:' c; echo \$c")
+        echo nameuser
+        echo nameemail
+    fi
+    # echo
+    # if [ "$answer" = "y" ] || [  "$answer" = "Y"  ]; then
+    #     tmux kill-server
+    #     echo 'killed'
+    # else
+    #     echo "didn't kill"
+    # fi
+
+    # if [ $# = 0 ]; then
+    #     echo 'user.name:' `git config user.name`
+    #     echo 'user.email:' `git config user.email`
+    # else
+    #     username=''
+    #     useremail=''
+    #     git config user.name username
+    #     git config user.email useremail
+    # fi
+}
 # 初创
 alias gi='git init'       # 创建.git:    cd 项目文件夹; gi
 # 暂存
