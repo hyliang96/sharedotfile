@@ -382,9 +382,14 @@ tm() {
 
 
 # ------------------- io function -------------------
+# print()
+# {
+#     echo $* > /dev/tty
+# }
 getchar()
 {
-    echo $(bash -c "read -n 1 c; echo \$c"; echo)
+    echo $(bash -c "read -n 1 c; echo \$c")
+    echo > /dev/tty
 }
 
 getline()
