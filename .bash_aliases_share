@@ -387,10 +387,10 @@ tm() {
 #     prompt="$*"
 #     echo `bash -c "read  -p \"\$prompt \" c; echo \$c"`
 # }
-getchar()
+get_char()
 {
     prompt="asds"
-    answer=$(bash -c "read  -n 1 -p '$prompt' c; echo \$c")
+    answer=$(bash -c "read  -n 1 -p 'sds wq e d s' c; echo \$c")
     echo $answer
 }
 
