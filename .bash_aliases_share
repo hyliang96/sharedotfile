@@ -409,7 +409,7 @@ getchar()
 test()
 {
     echo asdasds asd ads
-    a=$(getchar)
+    a=`getchar`
     # getline a
     echo $a
 }
