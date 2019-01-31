@@ -384,7 +384,7 @@ tm() {
 # ------------------- io function -------------------
 getchar()
 {
-    echo $(bash -c "read -n 1 c; echo \$c")
+    echo $(bash -c "read -n 1 c; echo \$c"; echo)
 }
 
 getline()
