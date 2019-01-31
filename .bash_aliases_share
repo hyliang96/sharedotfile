@@ -384,19 +384,15 @@ tm() {
 # ------------------- io function -------------------
 getchar()
 {
-    echo begin
-    echo $(bash -c "read -n 1 -s c; echo \$c")
-    echo end
+    echo $(bash -c "read -n 1 c; echo \$c")
 }
 
-# getline()
-# {
-#     echo begin
-#     x=$1
-#     x=10
-#     # bash -c "read -n 1 -s $1"
-#     echo end
-# }
+getline()
+{
+    echo begin
+    echo $(read s; echo $s)
+    echo end
+}
 
 # getline()
 # {
