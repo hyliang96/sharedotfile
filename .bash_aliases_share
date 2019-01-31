@@ -385,7 +385,7 @@ tm() {
 getline()
 {
     prompt="$*"
-    echo `bash -c "read -u 1 -p \"\$prompt\" c; echo \$c"`
+    echo `bash -c "read  -p \"\$prompt \" -s c; echo \$c"`
 }
 
 # ------------------ git ----------------------------
