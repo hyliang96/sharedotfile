@@ -217,6 +217,12 @@ setopt no_nomatch
 bindkey \^U backward-kill-line
 # kill-whole-line  # 删除整行
 
+# 解绑 ctrl+s ctrl+q
+stty start undef
+stty stop undef
+setopt noflowcontrol
+
+
 # ------------- 其他 -------------
 # iterm2_shell_integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
