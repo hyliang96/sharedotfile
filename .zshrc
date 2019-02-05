@@ -223,8 +223,8 @@ stty stop undef
 setopt noflowcontrol
 
 if [[ -n "$TMUX" ]]; then
-    bind '"\e[1~":"\eOH"'
-    bind '"\e[4~":"\eOF"'
+    bindkey '"\e[1~":"\eOH"'
+    bindkey '"\e[4~":"\eOF"'
 fi
 # ------------- 其他 -------------
 # iterm2_shell_integration
