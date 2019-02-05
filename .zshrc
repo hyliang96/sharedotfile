@@ -222,6 +222,8 @@ stty start undef
 stty stop undef
 setopt noflowcontrol
 
+
+export TERMINFO=~/.terminfo
 if [[ -n "$TMUX" ]]; then
     bindkey "${terminfo[khome]}" beginning-of-line
     bindkey "${terminfo[kend]}" end-of-line
