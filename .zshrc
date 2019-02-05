@@ -6,27 +6,27 @@ ANTIGEN="$HOME/.local/bin/antigen.zsh"
 
 # Install antigen.zsh if not exist
 if [ ! -f "$ANTIGEN" ]; then
-	echo "Installing antigen ..."
-	[ ! -d "$HOME/.local" ] && mkdir -p "$HOME/.local" 2> /dev/null
-	[ ! -d "$HOME/.local/bin" ] && mkdir -p "$HOME/.local/bin" 2> /dev/null
-	[ ! -f "$HOME/.z" ] && touch "$HOME/.z"
-	URL="http://git.io/antigen"
-	TMPFILE="/tmp/antigen.zsh"
-	if [ -x "$(which curl)" ]; then
-		curl -L "$URL" -o "$TMPFILE"
-	elif [ -x "$(which wget)" ]; then
-		wget "$URL" -O "$TMPFILE"
-	else
-		echo "ERROR: please install curl or wget before installation !!"
-		exit
-	fi
-	if [ ! $? -eq 0 ]; then
-		echo ""
-		echo "ERROR: downloading antigen.zsh ($URL) failed !!"
-		exit
-	fi;
-	echo "move $TMPFILE to $ANTIGEN"
-	mv "$TMPFILE" "$ANTIGEN"
+    echo "Installing antigen ..."
+    [ ! -d "$HOME/.local" ] && mkdir -p "$HOME/.local" 2> /dev/null
+    [ ! -d "$HOME/.local/bin" ] && mkdir -p "$HOME/.local/bin" 2> /dev/null
+    [ ! -f "$HOME/.z" ] && touch "$HOME/.z"
+    URL="http://git.io/antigen"
+    TMPFILE="/tmp/antigen.zsh"
+    if [ -x "$(which curl)" ]; then
+        curl -L "$URL" -o "$TMPFILE"
+    elif [ -x "$(which wget)" ]; then
+        wget "$URL" -O "$TMPFILE"
+    else
+        echo "ERROR: please install curl or wget before installation !!"
+        exit
+    fi
+    if [ ! $? -eq 0 ]; then
+        echo ""
+        echo "ERROR: downloading antigen.zsh ($URL) failed !!"
+        exit
+    fi;
+    echo "move $TMPFILE to $ANTIGEN"
+    mv "$TMPFILE" "$ANTIGEN"
 fi
 
 
@@ -86,8 +86,8 @@ antigen bundle willghatch/zsh-cdr
 
 # check login shell
 if [[ -o login ]]; then
-	[ -f "$HOME/.local/etc/login.sh" ] && source "$HOME/.local/etc/login.sh"
-	[ -f "$HOME/.local/etc/login.zsh" ] && source "$HOME/.local/etc/login.zsh"
+    [ -f "$HOME/.local/etc/login.sh" ] && source "$HOME/.local/etc/login.sh"
+    [ -f "$HOME/.local/etc/login.zsh" ] && source "$HOME/.local/etc/login.zsh"
 fi
 
 # syntax color definition
@@ -187,12 +187,12 @@ zstyle ':completion:*:*sh:*:' tag-order files
 # 以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）
 # 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...
 if [ -x "$(command -v brew)" ] ; then
-	if brew list | grep coreutils > /dev/null ; then
-		# 在mac系统下安装了brew，并安装了coreutils，本句判断才为true
-		PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-		alias ls='ls -F -G --show-control-chars --color=auto'
-		eval `gdircolors -b $HOME/.dir_colors`
-	fi
+    if brew list | grep coreutils > /dev/null ; then
+        # 在mac系统下安装了brew，并安装了coreutils，本句判断才为true
+        PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+        alias ls='ls -F -G --show-control-chars --color=auto'
+        eval `gdircolors -b $HOME/.dir_colors`
+    fi
 fi
 
 # 将777权限的文件在ls时，显示为文灰底紫
@@ -222,10 +222,10 @@ stty start undef
 stty stop undef
 setopt noflowcontrol
 
-if [[ -n "$TMUX" ]]; then
-	bindkey "${terminfo[khome]}" beginning-of-line
-	bindkey "${terminfo[kend]}" end-of-line
-fi
+# if [[ -n "$TMUX" ]]; then
+    bindkey "${terminfo[khome]}" beginning-of-line
+    bindkey "${terminfo[kend]}" end-of-line
+# fi
 # ------------- 其他 -------------
 # iterm2_shell_integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
