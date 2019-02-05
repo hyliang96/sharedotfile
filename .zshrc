@@ -223,9 +223,10 @@ stty stop undef
 setopt noflowcontrol
 
 # if [[ -n "$TMUX" ]]; then
-    bindkey "${terminfo[khome]}" beginning-of-line
-    bindkey "${terminfo[kend]}" end-of-line
+#     bindkey "${terminfo[khome]}" beginning-of-line
+#     bindkey "${terminfo[kend]}" end-of-line
 # fi
+
 # ------------- 其他 -------------
 # iterm2_shell_integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
