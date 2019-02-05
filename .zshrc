@@ -229,6 +229,9 @@ if [[ -n "$TMUX" ]]; then
     bindkey "^[[4~" end-of-line
 fi
 
+bindkey '^[[H' beginning-of-line # iterm
+bindkey '^[[F' end-of-line # iterm
+
 # ------------- 其他 -------------
 # iterm2_shell_integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
