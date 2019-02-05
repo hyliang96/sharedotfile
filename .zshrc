@@ -222,7 +222,10 @@ stty start undef
 stty stop undef
 setopt noflowcontrol
 
-
+if [[ -n "$TMUX" ]]; then
+    bind '"\e[1~":"\eOH"'
+    bind '"\e[4~":"\eOF"'
+fi
 # ------------- 其他 -------------
 # iterm2_shell_integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
