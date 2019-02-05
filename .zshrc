@@ -223,15 +223,15 @@ stty stop undef
 setopt noflowcontrol
 
 
-export TERMINFO=~/.terminfo
+# export TERMINFO=~/.terminfo
 
-if [[ -n "$TMUX" ]]; then
-    bindkey "^[[1~" beginning-of-line
-    bindkey "^[[4~" end-of-line
-fi
+# if [[ -n "$TMUX" ]]; then
+#     bindkey "^[[1~" beginning-of-line
+#     bindkey "^[[4~" end-of-line
+# fi
 
-bindkey '^[[H' beginning-of-line # iterm
-bindkey '^[[F' end-of-line # iterm
+# bindkey '^[[H' beginning-of-line # iterm
+# bindkey '^[[F' end-of-line # iterm
 
 # ------------- 其他 -------------
 # iterm2_shell_integration
