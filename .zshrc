@@ -223,8 +223,8 @@ stty stop undef
 setopt noflowcontrol
 
 if [[ -n "$TMUX" ]]; then
-    bindkey '"\e[1~":"\eOH"'
-    bindkey '"\e[4~":"\eOF"'
+	bindkey "${terminfo[khome]}" beginning-of-line
+	bindkey "${terminfo[kend]}" end-of-line
 fi
 # ------------- 其他 -------------
 # iterm2_shell_integration
