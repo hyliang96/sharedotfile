@@ -223,7 +223,6 @@ stty stop undef
 setopt noflowcontrol
 
 
-# export TERMINFO=~/.terminfo
 
 # if [[ -n "$TMUX" ]]; then
 #     bindkey "^[[1~" beginning-of-line
