@@ -583,4 +583,10 @@ gmed()  # 修改提交信息：  gmed <版本id>
     GIT_SEQUENCE_EDITOR="sed -i -re 's/^pick ${commitid}/r ${commitid}/'" git rebase -i ${commitid}^
 }
 
-
+gig()   # 修改.gitignore 后，提交一版
+{
+    git rm -r --cached .  #清除缓存
+    git add . #重新trace file
+    git commit -m "update .gitignore" #提交和注释
+    git push origin master #可选，如果需要同步到remote上的话
+}
