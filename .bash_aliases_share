@@ -132,7 +132,7 @@ sub(){
 abspath(){
     echo $(cd $(dirname "$1") && pwd -P)/$(basename "$1")
 }
-loc(){
+edit(){
     # app=$1
     # shift
 
@@ -146,16 +146,16 @@ loc(){
         fi
     done
     if [ "$dirs" != "" ]; then
-        echo  "local open app: ; user: $USER; hostname: `hostname`; path: $dirs"
+        echo  "local open app: edit; user: $USER; hostname: `hostname`; path: $dirs"
     fi
 }
 
 if [ "$(uname -o)" = "Darwin" ]; then
     # 是mac
-    alias finder="open"
+    alias ropen="open"
 else
     # 是
-    finder(){
+    ropen(){
         # app=$1
         # shift
 
