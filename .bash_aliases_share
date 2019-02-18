@@ -104,7 +104,11 @@ kjob()
 sub(){
     if [ -d /Applications/Sublime\ Text.app ]; then
     # 本地是Mac，且有sublime
-        open -a "/Applications/Sublime Text.app" $*
+        dirs=""
+        for arg in $*; do
+            dirs="$dirs \"$arg\""
+        done
+        open -a "/Applications/Sublime Text.app" $dirs
     else
     # 本地非mac，或无sublime
         echo "\"open sublime on mac client\""
