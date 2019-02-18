@@ -106,7 +106,7 @@ sub(){
     # 本地是Mac，且有sublime
         dirs=""
         for arg in $*; do
-            dirs="$dirs \"$arg\""
+            dirs="$dirs '$arg'"
         done
         open -a "/Applications/Sublime Text.app" $dirs
     else
