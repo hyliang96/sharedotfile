@@ -100,21 +100,12 @@ kjob()
 }
 
 # --------------------- 软件 ----------------------
-# sublime的别名
 sub(){
     if [ -d /Applications/Sublime\ Text.app ]; then
-    # 本地是Mac，且有sublime
-        # open -a "/Applications/Sublime Text.app" $@
-
-        dirs=""
-        for arg in $@; do
-            # dirs="$dirs '$arg'"
-            open -a "/Applications/Sublime Text.app" $arg
-
-        done
-        echo $dirs
+        # 本地是Mac，且有sublime
+        open -a "/Applications/Sublime Text.app" $*
     else
-    # 本地非mac，或无sublime
+        # 本地非mac，或无sublime
         echo "\"open sublime on mac client\""
         sleep 0.1
         dirs=""
@@ -132,11 +123,33 @@ sub(){
             fi
         done
         if [ "$dirs" != "" ]; then
-        # 以备iterm2抓取用户、服务器、文件夹路径，从而用远程的sublime sftp开
+            # 以备iterm2抓取用户、服务器、文件夹路径，从而用远程的sublime sftp开
             echo "user: $USER; hostname: `hostname`; path: '$dirs'"
         fi
     fi
 }
+
+abspath(){
+    echo $(cd $(dirname "$1") && pwd -P)/$(basename "$1")
+}
+loc(){
+    app=$1
+    shift
+
+    dirs=""
+    for arg in $@; do
+        if [ -e $arg ]; then
+            path_arg=$(abspath $arg)
+            dirs="$dirs '$path_arg'"
+        else
+            echo not exist: $arg
+        fi
+    done
+    if [ "$dirs" != "" ]; then
+        echo  "app: $app; user: $USER; hostname: `hostname`; path: $dirs"
+    fi
+}
+
 
 # --------------- alias dotfile ----------------------
 # bash
