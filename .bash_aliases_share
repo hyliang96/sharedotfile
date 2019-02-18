@@ -133,8 +133,8 @@ abspath(){
     echo $(cd $(dirname "$1") && pwd -P)/$(basename "$1")
 }
 loc(){
-    app=$1
-    shift
+    # app=$1
+    # shift
 
     dirs=""
     for arg in $@; do
@@ -146,10 +146,26 @@ loc(){
         fi
     done
     if [ "$dirs" != "" ]; then
-        echo  "app: $app; user: $USER; hostname: `hostname`; path: $dirs"
+        echo  "local open aap: ; user: $USER; hostname: `hostname`; path: $dirs"
     fi
 }
+finder(){
+    # app=$1
+    # shift
 
+    dirs=""
+    for arg in $@; do
+        if [ -e $arg ]; then
+            path_arg=$(abspath $arg)
+            dirs="$dirs '$path_arg'"
+        else
+            echo not exist: $arg
+        fi
+    done
+    if [ "$dirs" != "" ]; then
+        echo  "local open aap: Finder; user: $USER; hostname: `hostname`; path: $dirs"
+    fi
+}
 
 # --------------- alias dotfile ----------------------
 # bash
