@@ -100,65 +100,45 @@ kjob()
 }
 
 # --------------------- 软件 ----------------------
+# sub(){
+#     if [ -d /Applications/Sublime\ Text.app ]; then
+#         # 本地是Mac，且有sublime
+#         open -a "/Applications/Sublime Text.app" $*
+#     else
+#         # 本地非mac，或无sublime
+#         echo "\"open sublime on mac client\""
+#         sleep 0.1
+#         dirs=""
+#         for arg in $@; do
+#             if [ -f $arg ]; then
+#                 # echo "用笔记本上的sublime开文件 $arg"
+#                 # 但文件走rsub
+#                 rsub $arg
+#                 n_file=1
+#             elif [ -d $arg ]; then
+#                 # echo "用笔记本上的sublime开文件夹: $arg"
+#                 dirs="$dirs $(cd $arg; pwd)"
+#             else
+#                 echo no directory or file $arg
+#             fi
+#         done
+#         if [ "$dirs" != "" ]; then
+#             # 文件夹走sftp
+#             # 以备iterm2抓取用户、服务器、文件夹路径，从而用远程的sublime sftp开
+#             echo "user: $USER; hostname: `hostname`; path: '$dirs'"
+#         fi
+#     fi
+# }
+
+abspath(){
+    echo $(cd $(dirname "$1") && pwd -P)/$(basename "$1")
+}
 sub(){
     if [ -d /Applications/Sublime\ Text.app ]; then
         # 本地是Mac，且有sublime
         open -a "/Applications/Sublime Text.app" $*
     else
-        # 本地非mac，或无sublime
-        echo "\"open sublime on mac client\""
-        sleep 0.1
-        dirs=""
-        for arg in $@; do
-            if [ -f $arg ]; then
-
-                # echo "用笔记本上的sublime开文件 $arg"
-                rsub $arg
-                n_file=1
-            elif [ -d $arg ]; then
-                # echo "用笔记本上的sublime开文件夹: $arg"
-                dirs="$dirs $(cd $arg; pwd)"
-            else
-                echo no directory or file $arg
-            fi
-        done
-        if [ "$dirs" != "" ]; then
-            # 以备iterm2抓取用户、服务器、文件夹路径，从而用远程的sublime sftp开
-            echo "user: $USER; hostname: `hostname`; path: '$dirs'"
-        fi
-    fi
-}
-
-abspath(){
-    echo $(cd $(dirname "$1") && pwd -P)/$(basename "$1")
-}
-edit(){
-    # app=$1
-    # shift
-
-    dirs=""
-    for arg in $@; do
-        if [ -e $arg ]; then
-            path_arg=$(abspath $arg)
-            dirs="$dirs '$path_arg'"
-        else
-            echo not exist: $arg
-        fi
-    done
-    if [ "$dirs" != "" ]; then
-        echo  "local open app: edit; user: $USER; hostname: `hostname`; path: $dirs"
-    fi
-}
-
-if [ "$(uname -o)" = "Darwin" ]; then
-    # 是mac
-    alias ropen="open"
-else
-    # 是
-    ropen(){
-        # app=$1
-        # shift
-
+        # 所有文件走sshfs，可以开文件夹和文件
         dirs=""
         for arg in $@; do
             if [ -e $arg ]; then
@@ -169,7 +149,25 @@ else
             fi
         done
         if [ "$dirs" != "" ]; then
-            echo  "local open app: Finder; user: $USER; hostname: `hostname`; path: $dirs"
+            echo  "local open app: sub; user: $USER; hostname: `hostname`; path: $dirs"
+        fi
+    fi
+}
+
+if [ "$(uname -o)" != "Darwin" ]; then
+    # 不是mac
+    open(){
+        dirs=""
+        for arg in $@; do
+            if [ -e $arg ]; then
+                path_arg=$(abspath $arg)
+                dirs="$dirs '$path_arg'"
+            else
+                echo not exist: $arg
+            fi
+        done
+        if [ "$dirs" != "" ]; then
+            echo  "local open app: open; user: $USER; hostname: `hostname`; path: $dirs"
         fi
     }
 fi
