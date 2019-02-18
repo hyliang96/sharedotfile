@@ -146,27 +146,33 @@ loc(){
         fi
     done
     if [ "$dirs" != "" ]; then
-        echo  "local open aap: ; user: $USER; hostname: `hostname`; path: $dirs"
+        echo  "local open app: ; user: $USER; hostname: `hostname`; path: $dirs"
     fi
 }
-finder(){
-    # app=$1
-    # shift
 
-    dirs=""
-    for arg in $@; do
-        if [ -e $arg ]; then
-            path_arg=$(abspath $arg)
-            dirs="$dirs '$path_arg'"
-        else
-            echo not exist: $arg
+if [ "$(uname -o)" = "Darwin" ]; then
+    # 是mac
+    alias finder="open"
+else
+    # 是
+    finder(){
+        # app=$1
+        # shift
+
+        dirs=""
+        for arg in $@; do
+            if [ -e $arg ]; then
+                path_arg=$(abspath $arg)
+                dirs="$dirs '$path_arg'"
+            else
+                echo not exist: $arg
+            fi
+        done
+        if [ "$dirs" != "" ]; then
+            echo  "local open app: Finder; user: $USER; hostname: `hostname`; path: $dirs"
         fi
-    done
-    if [ "$dirs" != "" ]; then
-        echo  "local open aap: Finder; user: $USER; hostname: `hostname`; path: $dirs"
-    fi
-}
-
+    }
+fi
 # --------------- alias dotfile ----------------------
 # bash
 alias vbe='sub ~/.bash_env';        alias sbe='source ~/.bash_env'
