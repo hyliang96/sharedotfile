@@ -309,6 +309,8 @@ c.InteractiveShell.colors = 'Linux'
 c.TerminalInteractiveShell.highlighting_style = "monokai"
 # 好用的颜色:  native vim paraiso-dark trac fruity monokai
 
+from pygments.token import Token, Keyword, Name, Comment, String, Error, \
+     Number, Operator, Generic, Whitespace
 ## Override highlighting format for specific tokens
 c.TerminalInteractiveShell.highlighting_style_overrides = {
 
