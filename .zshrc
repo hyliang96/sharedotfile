@@ -263,7 +263,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 echo end .zshrc
 
-if [[ -o interactive ]]; then
+# if [[ -o interactive ]]; then
+if [[ $- == *i* ]]; then
     # 交互模式
     echo 交互模式
     [ -f ~/.bash_aliases ] && . ~/.bash_aliases
