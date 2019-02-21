@@ -211,6 +211,8 @@ if [ -x "$(command -v brew)" ] ; then
         alias ls='ls -F -G --show-control-chars --color=auto'
         eval `gdircolors -b $HOME/.dir_colors`
     fi
+    echo 13
+
 fi
 echo 10
 
