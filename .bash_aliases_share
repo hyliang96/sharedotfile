@@ -56,35 +56,35 @@ cpu_n()
 }
 
 
-# alias size='du -hd 0' # sl <dir_path>， 查看某个文件、文件夹的大小，<dir_path>缺省则为当前目录
-# # 数文件/文件夹个数
-# alias sl='python $myscript/sizelist.py' # sl <dir_path> ,查看某个目录及其下一级所有文件、文件夹的大小，<dir_path>缺省则为当前目录
-# # sl为size ls之意, <dir_path>缺省则为当前目录
-# alias count='python $myscript/countfile.py'
-# # 列出 指定目录下子目录 含有某字符串的 文件/文件夹 的个数
-# alias cl='python $myscript/countfile.py -lar'
-# findname() # 按名字查找
-# {
-#     if [ $# -lt 2 ]
-#     then
-#         echo "Usage: fd <path> <name>"
-#     else
-#         argvpath=$1; shift 1
-#         find $argvpath -name $* 2>&1 | grep -v "Permission denied"
-#     fi
-# }
+alias size='du -hd 0' # sl <dir_path>， 查看某个文件、文件夹的大小，<dir_path>缺省则为当前目录
+# 数文件/文件夹个数
+alias sl='python $myscript/sizelist.py' # sl <dir_path> ,查看某个目录及其下一级所有文件、文件夹的大小，<dir_path>缺省则为当前目录
+# sl为size ls之意, <dir_path>缺省则为当前目录
+alias count='python $myscript/countfile.py'
+# 列出 指定目录下子目录 含有某字符串的 文件/文件夹 的个数
+alias cl='python $myscript/countfile.py -lar'
+findname() # 按名字查找
+{
+    if [ $# -lt 2 ]
+    then
+        echo "Usage: fd <path> <name>"
+    else
+        argvpath=$1; shift 1
+        find $argvpath -name $* 2>&1 | grep -v "Permission denied"
+    fi
+}
 
-# # -------------------- 网络-------------------------
-# alias nw='hostname -I' # 查看内网ip
-# alias ww='curl ifconfig.me' # 查看外网ip
-# # 查看端口
-# dk()
-# {
-#    eval "lsof -i:$1"
-# }
+# -------------------- 网络-------------------------
+alias nw='hostname -I' # 查看内网ip
+alias ww='curl ifconfig.me' # 查看外网ip
+# 查看端口
+dk()
+{
+   eval "lsof -i:$1"
+}
 
-# # sshfs挂载
-# alias umt='fusermount -u' # 取消sshfs的挂载, umt <本地路径>
+# sshfs挂载
+alias umt='fusermount -u' # 取消sshfs的挂载, umt <本地路径>
 
 # # -------------------- 进程管理 --------------------
 # # 搜索进程
