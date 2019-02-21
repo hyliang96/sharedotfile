@@ -137,7 +137,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 echo 5
 
 antigen apply
-echo 5
+echo 6
 
 # setup for deer
 autoload -U deer
