@@ -262,3 +262,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 
 echo end .zshrc
+
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases
+
