@@ -184,6 +184,7 @@ setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history 
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY # Don't execute immediately upon history expansion.
 
+echo 9
 
 # source function.sh if it exists
 [ -f "$HOME/.local/etc/function.sh" ] && . "$HOME/.local/etc/function.sh"
@@ -192,6 +193,7 @@ setopt HIST_VERIFY # Don't execute immediately upon history expansion.
 zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.pdf|*.exe|*.dll'
 zstyle ':completion:*:*sh:*:' tag-order files
 
+echo 8
 
 # ------------- 配色 -------------
 # 终端使用 Coreutils 配色方案
@@ -206,6 +208,7 @@ if [ -x "$(command -v brew)" ] ; then
         eval `gdircolors -b $HOME/.dir_colors`
     fi
 fi
+echo 10
 
 # 将777权限的文件在ls时，显示为文灰底紫
 LS_COLORS=`echo $LS_COLORS | sed -E 's/ow=[0-9;]+://g'`:'ow=1;34;7:' ; export LS_COLORS
