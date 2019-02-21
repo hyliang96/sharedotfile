@@ -59,7 +59,7 @@ antigen use oh-my-zsh
 
 antigen theme agnoster  # agnoster # ys # 换主题，更多主题见：https://github.com/robbyrussell/oh-my-zsh/wiki/themes
 echo brefore autojump
-antigen bundle autojump # 自动跳转
+# antigen bundle autojump # 自动跳转
 echo after autojump
 
 # default bundles
