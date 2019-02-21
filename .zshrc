@@ -237,9 +237,5 @@ setopt noflowcontrol
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
-# alias
-[ -f ~/.bash_aliases ] && . ~/.bash_aliases
-
-
 
 
