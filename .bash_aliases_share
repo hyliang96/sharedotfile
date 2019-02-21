@@ -90,15 +90,15 @@ alias umt='fusermount -u' # 取消sshfs的挂载, umt <本地路径>
 # # 搜索进程
 # alias jc='ps aux | awk 'NR==1'; ps aux | grep -v grep | grep'
 # # 按pid杀死进程
-# alias kpid='kill -9'
-# # 按jobs的号码杀掉进程
-# kjob()
-# {
-#     for x in $*
-#     do
-#         kill %$x
-#     done
-# }
+alias kpid='kill -9'
+# 按jobs的号码杀掉进程
+kjob()
+{
+    for x in $*
+    do
+        kill %$x
+    done
+}
 
 # --------------------- 软件 ----------------------
 # sub(){
