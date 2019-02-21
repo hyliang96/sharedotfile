@@ -1,59 +1,59 @@
 #!/usr/bin/bash
 # 服务器、笔记本、WSL 共享的alias配置
-# echo .bash_aliases_share
+echo .bash_aliases_share
 
-# # ---------------- alias to resource ----------------
-# alias nvd='watch -n 0.1 nvidia-smi' # 查GPU使用
-# alias gpu='watch -n 0.1 gpustat'    # 查看GPU使用，谁在用
-# alias gpujc='nvidia-who'            # 看用哪个进程在用显卡
+# ---------------- alias to resource ----------------
+alias nvd='watch -n 0.1 nvidia-smi' # 查GPU使用
+alias gpu='watch -n 0.1 gpustat'    # 查看GPU使用，谁在用
+alias gpujc='nvidia-who'            # 看用哪个进程在用显卡
 
-# # 用法
-# # `gpuid 0 python xxx.py` 现在暂时用GPU0运行 xxx.py
-# # `gpuid 0` 并不能使得接下来一直默认用GPU0运行各个程序
-# gpuid()
-# {
-#     eval "CUDA_VISIBLE_DEVICES=$*"
-# }
+# 用法
+# `gpuid 0 python xxx.py` 现在暂时用GPU0运行 xxx.py
+# `gpuid 0` 并不能使得接下来一直默认用GPU0运行各个程序
+gpuid()
+{
+    eval "CUDA_VISIBLE_DEVICES=$*"
+}
 
-# alias mem='free -h'  # 查内存使用
-# alias yp-a='df -h' # 查看所有硬盘使用
-# alias yp='df -h' # 查看当前目录所在硬盘使用
+alias mem='free -h'  # 查内存使用
+alias yp-a='df -h' # 查看所有硬盘使用
+alias yp='df -h' # 查看当前目录所在硬盘使用
 
-# alias cuda-v='nvcc -V'      # 查看cuda版本
+alias cuda-v='nvcc -V'      # 查看cuda版本
 
-# alias xt='lsb_release -a'   # 查看操作系统版本
-# alias ws='getconf LONG_BIT' # 查看系统位数
-# alias nh='cat /proc/version' # 查看内核版本
-# alias cpu-v='echo -n "logic cpu num:";  cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c' #  查看CPU信息（型号）
-# sys()
-# {
-#     echo "系统: "; xt
-#     echo -n "位数: "; ws
-#     echo -n  "内核: "; nh
-#     echo -n "CPU: "; cpu-v
-# }
+alias xt='lsb_release -a'   # 查看操作系统版本
+alias ws='getconf LONG_BIT' # 查看系统位数
+alias nh='cat /proc/version' # 查看内核版本
+alias cpu-v='echo -n "logic cpu num:";  cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c' #  查看CPU信息（型号）
+sys()
+{
+    echo "系统: "; xt
+    echo -n "位数: "; ws
+    echo -n  "内核: "; nh
+    echo -n "CPU: "; cpu-v
+}
 
 
-# # 总核数 = 物理CPU个数 X 每颗物理CPU的核数
-# # 逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数
-# alias pcpu_n='cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l' # 物理cpu数
-# cpu_nh()    # 每个物理CPU的核数
-# {
-#     echo ${$(cat /proc/cpuinfo| grep "cpu cores"| uniq)//[^0-9]/}
-# }
-# alias lcpu_n='cat /proc/cpuinfo| grep "processor"| wc -l'   # 逻辑cpu数
+# 总核数 = 物理CPU个数 X 每颗物理CPU的核数
+# 逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数
+alias pcpu_n='cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l' # 物理cpu数
+cpu_nh()    # 每个物理CPU的核数
+{
+    echo ${$(cat /proc/cpuinfo| grep "cpu cores"| uniq)//[^0-9]/}
+}
+alias lcpu_n='cat /proc/cpuinfo| grep "processor"| wc -l'   # 逻辑cpu数
 
-# cxc_n() # 超线程数目
-# {
-#     echo $((10#$(lcpu_n)/10#$(pcpu_n)/10#$(cpu_nh)))
-# }
-# cpu_n()
-# {
-#     echo -n "物理CPU数："; pcpu_n
-#     echo -n "每CPU核数：";cpu_nh
-#     echo -n "逻辑CPU数：";lcpu_n
-#     echo -n "超线程数："; cxc_n
-# }
+cxc_n() # 超线程数目
+{
+    echo $((10#$(lcpu_n)/10#$(pcpu_n)/10#$(cpu_nh)))
+}
+cpu_n()
+{
+    echo -n "物理CPU数："; pcpu_n
+    echo -n "每CPU核数：";cpu_nh
+    echo -n "逻辑CPU数：";lcpu_n
+    echo -n "超线程数："; cxc_n
+}
 
 
 # alias size='du -hd 0' # sl <dir_path>， 查看某个文件、文件夹的大小，<dir_path>缺省则为当前目录
