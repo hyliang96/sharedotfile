@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-echo .zshrc
+# echo .zshrc
 
 # Antigen: https://github.com/zsh-users/antigen
 ANTIGEN="$HOME/.local/bin/antigen.zsh"
@@ -58,9 +58,7 @@ source "$ANTIGEN"
 antigen use oh-my-zsh
 
 antigen theme agnoster  # agnoster # ys # 换主题，更多主题见：https://github.com/robbyrussell/oh-my-zsh/wiki/themes
-echo brefore autojump
 # antigen bundle autojump # 自动跳转
-echo after autojump
 
 # default bundles
 # visit https://github.com/unixorn/awesome-zsh-plugins
@@ -125,24 +123,19 @@ ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=009
 ZSH_HIGHLIGHT_STYLES[assign]=none
 
 
-echo 2
 
 # load local config
 [ -f "$HOME/.local/etc/config.zsh" ] && source "$HOME/.local/etc/config.zsh"
 [ -f "$HOME/.local/etc/local.zsh" ] && source "$HOME/.local/etc/local.zsh"
-echo 3
 
 # enable syntax highlighting
 antigen bundle zsh-users/zsh-syntax-highlighting
-echo 5
 
 antigen apply
-echo 6
 
 # setup for deer
 autoload -U deer
 zle -N deer
-echo 4
 
 # default keymap
 bindkey -s '\ee' 'vim\n'
@@ -166,7 +159,6 @@ bindkey '\e[1;3B' end-of-line
 
 bindkey '\ev' deer
 
-echo 1
 
 
 # options
@@ -184,7 +176,6 @@ setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history 
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY # Don't execute immediately upon history expansion.
 
-echo 9
 
 # source function.sh if it exists
 [ -f "$HOME/.local/etc/function.sh" ] && . "$HOME/.local/etc/function.sh"
@@ -193,7 +184,6 @@ echo 9
 zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.pdf|*.exe|*.dll'
 zstyle ':completion:*:*sh:*:' tag-order files
 
-echo 8
 
 # ------------- 配色 -------------
 # 终端使用 Coreutils 配色方案
@@ -201,25 +191,17 @@ echo 8
 # 以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）
 # 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...
 if [ -x "$(command -v brew)" ] ; then
-    echo 12
-
     if brew list | grep coreutils > /dev/null ; then
-        echo 11
-
         # 在mac系统下安装了brew，并安装了coreutils，本句判断才为true
         PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
         alias ls='ls -F -G --show-control-chars --color=auto'
         eval `gdircolors -b $HOME/.dir_colors`
     fi
-    echo 13
-
 fi
-echo 10
 
 # 将777权限的文件在ls时，显示为文灰底紫
 LS_COLORS=`echo $LS_COLORS | sed -E 's/ow=[0-9;]+://g'`:'ow=1;34;7:' ; export LS_COLORS
 
-echo 7
 
 # grep 上色
 alias grep='grep --color'
@@ -261,11 +243,9 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 
 
-echo end .zshrc
 
 # if [[ -o interactive ]]; then
 if [[ $- == *i* ]]; then
     # 交互模式
-    echo 交互模式
     [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 fi
