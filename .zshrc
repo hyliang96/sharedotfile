@@ -130,6 +130,7 @@ echo 2
 # load local config
 [ -f "$HOME/.local/etc/config.zsh" ] && source "$HOME/.local/etc/config.zsh"
 [ -f "$HOME/.local/etc/local.zsh" ] && source "$HOME/.local/etc/local.zsh"
+echo 3
 
 # enable syntax highlighting
 antigen bundle zsh-users/zsh-syntax-highlighting
