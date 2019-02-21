@@ -140,6 +140,7 @@ antigen apply
 # setup for deer
 autoload -U deer
 zle -N deer
+echo 4
 
 # default keymap
 bindkey -s '\ee' 'vim\n'
