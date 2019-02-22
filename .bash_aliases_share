@@ -76,7 +76,11 @@ findname() # 按名字查找
 
 # -------------------- 网络-------------------------
 alias nw='hostname -I' # 查看内网ip
-alias ww='curl ifconfig.me' # 查看外网ip
+# 查看外网ip
+ww () {
+    local wwip=`curl ifconfig.me`  > /dev/null 2>&1
+    echo $wwip
+}
 # 查看端口
 dk()
 {
