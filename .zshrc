@@ -159,6 +159,7 @@ bindkey '\e[1;3B' end-of-line
 
 bindkey '\ev' deer
 
+echo .zshrc 1
 
 
 # options
