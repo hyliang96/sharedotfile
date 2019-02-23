@@ -192,15 +192,17 @@ echo .zshrc 2
 # 采用Coreutils的gdircolor配色，修改~/.dir_colors(自定义配色)
 # 以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）
 # 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...
-if [ -x "$(command -v brew)" ] ; then
-    if brew list | grep coreutils > /dev/null ; then
-        # 在mac系统下安装了brew，并安装了coreutils，本句判断才为true
-        PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-        alias ls='ls -F -G --show-control-chars --color=auto'
-        eval `gdircolors -b $HOME/.dir_colors`
-    fi
-fi
+# if [ -x "$(command -v brew)" ] ; then
+#     if brew list | grep coreutils > /dev/null ; then
+#         # 在mac系统下安装了brew，并安装了coreutils，本句判断才为true
+#         PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+#         alias ls='ls -F -G --show-control-chars --color=auto'
+#         eval `gdircolors -b $HOME/.dir_colors`
+#     fi
+# fi
 
+echo .zshrc 6
+echo "$(command -v brew)"
 echo .zshrc 5
 
 # 将777权限的文件在ls时，显示为文灰底紫
