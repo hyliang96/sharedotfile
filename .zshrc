@@ -211,7 +211,7 @@ if [ -x "$(command -v brew)" ] ; then
 fi
 
 echo .zshrc 6
-echo "$(command -v brew)"
+# echo "$(command -v brew)"
 # if [ -x "$(command -v brew)" ] ; then echo .zshrc 7; fi
 
 echo .zshrc 5
