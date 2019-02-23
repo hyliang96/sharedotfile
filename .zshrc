@@ -201,6 +201,8 @@ if [ -x "$(command -v brew)" ] ; then
     fi
 fi
 
+echo .zshrc 5
+
 # 将777权限的文件在ls时，显示为文灰底紫
 LS_COLORS=`echo $LS_COLORS | sed -E 's/ow=[0-9;]+://g'`:'ow=1;34;7:' ; export LS_COLORS
 
