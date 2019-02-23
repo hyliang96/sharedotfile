@@ -242,7 +242,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 
 
-
+echo end .zshrc
 
 # if [[ -o interactive ]]; then
 if [[ $- == *i* ]]; then
