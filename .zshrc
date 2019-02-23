@@ -202,15 +202,20 @@ echo .zshrc 2
 # 以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）
 # 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...
 
-if [ -x "$(command -v brew)" ] ; then
-    if brew list | grep coreutils > /dev/null ; then
-        # 在mac系统下安装了brew，并安装了coreutils，本句判断才为true
-        PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-        # between quotation marks is the tool output for LS_COLORS
-        alias ls='gls --show-control-chars --color=auto'
-        eval `gdircolors -b $HOME/.dir_colors`
-    fi
-fi
+# if [ -x "$(command -v brew)" ] ; then
+#     if brew list | grep coreutils > /dev/null ; then
+#         # 在mac系统下安装了brew，并安装了coreutils，本句判断才为true
+#         PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+#         # between quotation marks is the tool output for LS_COLORS
+#         alias ls='gls --show-control-chars --color=auto'
+#         eval `gdircolors -b $HOME/.dir_colors`
+#     fi
+# fi
+
+PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+alias ls='gls --show-control-chars --color=auto'
+eval `gdircolors -b $HOME/.dir_colors`
+
 
 # export LS_COLORS="di=31;41:ln=31;41:so=31;41:pi=31;41:ex=31;41:bd=31;41:cd=31;41:su=31;41:sg=31;41:tw=31;41:ow=31;41:"
 # zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
