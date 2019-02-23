@@ -160,7 +160,7 @@ sub(){
     fi
 }
 
-if [ "$(uname -o)" != "Darwin" ]; then
+if [ "$(uname)" != "Darwin" ]; then
     # 不是mac
     open(){
         dirs=""
