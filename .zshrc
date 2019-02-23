@@ -134,6 +134,8 @@ echo .zshrc 9
 # enable syntax highlighting
 antigen bundle zsh-users/zsh-syntax-highlighting
 
+echo .zshrc 12
+
 antigen apply
 
 echo .zshrc 11
