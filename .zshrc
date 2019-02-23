@@ -218,7 +218,8 @@ echo .zshrc 2
 #     fi
 # fi
 
-export LS_COLORS="di=31;41:ln=31;41:so=31;41:pi=31;41:ex=31;41:bd=31;41:cd=31;41:su=31;41:sg=31;41:tw=31;41:ow=31;41:"
+export LSCOLORS="exfxcxdxbxexexabagacad"
+# export LS_COLORS="di=31;41:ln=31;41:so=31;41:pi=31;41:ex=31;41:bd=31;41:cd=31;41:su=31;41:sg=31;41:tw=31;41:ow=31;41:"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 echo .zshrc 6
