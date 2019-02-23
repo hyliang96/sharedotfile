@@ -185,6 +185,7 @@ setopt HIST_VERIFY # Don't execute immediately upon history expansion.
 zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.pdf|*.exe|*.dll'
 zstyle ':completion:*:*sh:*:' tag-order files
 
+echo .zshrc 2
 
 # ------------- 配色 -------------
 # 终端使用 Coreutils 配色方案
