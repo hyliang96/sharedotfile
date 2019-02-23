@@ -2,8 +2,8 @@
 
 echo .zshrc
 
-# # Antigen: https://github.com/zsh-users/antigen
-# ANTIGEN="$HOME/.local/bin/antigen.zsh"
+# Antigen: https://github.com/zsh-users/antigen
+ANTIGEN="$HOME/.local/bin/antigen.zsh"
 
 
 # # Install antigen.zsh if not exist
@@ -50,8 +50,8 @@ echo .zshrc
 # [ -d "/mnt/c" ] && [[ "$(uname -a)" == *Microsoft* ]] && unsetopt BG_NICE
 
 
-# # Initialize antigen
-# source "$ANTIGEN"
+# Initialize antigen
+source "$ANTIGEN"
 
 
 # # Initialize oh-my-zsh
