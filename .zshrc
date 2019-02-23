@@ -58,7 +58,7 @@ source "$ANTIGEN"
 antigen use oh-my-zsh
 
 antigen theme agnoster  # agnoster # ys # 换主题，更多主题见：https://github.com/robbyrussell/oh-my-zsh/wiki/themes
-# antigen bundle autojump # 自动跳转
+antigen bundle autojump # 自动跳转
 
 # default bundles
 # visit https://github.com/unixorn/awesome-zsh-plugins
