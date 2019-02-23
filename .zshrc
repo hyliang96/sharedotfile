@@ -208,9 +208,13 @@ if [ -x "$(command -v brew)" ] ; then
         PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
         # eval '`dircolors`'
         eval `gdircolors -b $HOME/.dir_colors`
-        # export CLICOLOR=1
+        export CLICOLOR=1
+        # between quotation marks is the tool output for LS_COLORS
+        # export LS_COLORS="di=31;41:ln=31;41:so=31;41:pi=31;41:ex=31;41:bd=31;41:cd=31;41:su=31;41:sg=31;41:tw=31;41:ow=31;41:"
+        # zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
         # alias ls='ls --color=auto'
-        alias ls='ls -F -G==auto'
+        # alias ls='ls -FG'
          # --show-control-chars --color=auto'
     fi
 fi
