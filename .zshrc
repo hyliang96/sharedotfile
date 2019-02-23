@@ -129,6 +129,8 @@ echo .zshrc 8
 [ -f "$HOME/.local/etc/config.zsh" ] && source "$HOME/.local/etc/config.zsh"
 [ -f "$HOME/.local/etc/local.zsh" ] && source "$HOME/.local/etc/local.zsh"
 
+echo .zshrc 9
+
 # enable syntax highlighting
 antigen bundle zsh-users/zsh-syntax-highlighting
 
@@ -137,6 +139,8 @@ antigen apply
 # setup for deer
 autoload -U deer
 zle -N deer
+
+echo .zshrc 10
 
 # default keymap
 bindkey -s '\ee' 'vim\n'
