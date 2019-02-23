@@ -206,8 +206,8 @@ if [ -x "$(command -v brew)" ] ; then
     if brew list | grep coreutils > /dev/null ; then
         # 在mac系统下安装了brew，并安装了coreutils，本句判断才为true
         PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-        # export CLICOLOR=1
-        alias ls='ls -FG'
+        export CLICOLOR=1
+        # alias ls='ls -FG'
          # --show-control-chars --color=auto'
         eval `gdircolors -b $HOME/.dir_colors`
     fi
