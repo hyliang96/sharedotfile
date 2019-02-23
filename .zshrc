@@ -210,7 +210,7 @@ if [ -x "$(command -v brew)" ] ; then
         eval `gdircolors -b $HOME/.dir_colors`
         # export CLICOLOR=1
         # alias ls='ls --color=auto'
-        # alias ls='ls -FG'
+        alias ls='ls -F -G==auto'
          # --show-control-chars --color=auto'
     fi
 fi
