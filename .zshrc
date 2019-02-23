@@ -202,6 +202,7 @@ echo .zshrc 2
 # 以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）
 # 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...
 
+# 旧的设置
 # if [ -x "$(command -v brew)" ] ; then
 #     if brew list | grep coreutils > /dev/null ; then
 #         # 在mac系统下安装了brew，并安装了coreutils，本句判断才为true
@@ -211,16 +212,14 @@ echo .zshrc 2
 #         eval `gdircolors -b $HOME/.dir_colors`
 #     fi
 # fi
-alias ls='gls --show-control-chars --color=auto'
 
-# export LS_COLORS="di=31;41:ln=31;41:so=31;41:pi=31;41:ex=31;41:bd=31;41:cd=31;41:su=31;41:sg=31;41:tw=31;41:ow=31;41:"
-# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
-echo .zshrc 6
-# echo "$(command -v brew)"
-# if [ -x "$(command -v brew)" ] ; then echo .zshrc 7; fi
-
-echo .zshrc 5
+# mac 上有gls，用以代替ls
+# mac上的ls不支持 --show-control-chars --color=auto
+# gls --color=auto 默认加载 coreutils 配色
+if [  -x "$(command -v gls)"  ]; then
+    alias ls='gls --show-control-chars --color=auto'
+fi
+# linux 的 ls默认上色了，加载 coreutils 配色
 
 # 将777权限的文件在ls时，显示为文灰底紫
 LS_COLORS=`echo $LS_COLORS | sed -E 's/ow=[0-9;]+://g'`:'ow=1;34;7:' ; export LS_COLORS
