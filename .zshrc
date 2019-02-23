@@ -218,6 +218,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # 即使没有 .* 文件，也会把 * 文件删了
 setopt no_nomatch
 
+echo .zshrc 3
 
 # ctrl+u: 删除光标左侧
 bindkey \^U backward-kill-line
