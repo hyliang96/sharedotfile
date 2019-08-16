@@ -2,6 +2,8 @@
 
 The shared dotfiles among all my servers, Mac and CP (WSL)
 
+**This repo is deprecated** and moved to https://github.com/hyliang96/shareENV.git.
+
 
 ### install
 * git clone this repo to a new computer, put the dir on any path you like
